@@ -1,13 +1,30 @@
-{pkgs, ...}: {
-  hardware.pulseaudio.enable = false;
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  nixpkgs-stable = inputs.nixpkgs-stable.legacyPackages.x86_64-linux;
+in {
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-    jack.enable = true;
+  services = {
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      package = nixpkgs-stable.pipewire;
+
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+
+      wireplumber = {
+        enable = true;
+        package = nixpkgs-stable.wireplumber;
+      };
+
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [

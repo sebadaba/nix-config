@@ -17,7 +17,7 @@
 
   home = {
     username = lib.mkDefault config.hostAttr.primaryUsername;
-    homeDirectory = lib.mkDefault home/${config.hostAttr.primaryUsername};
+    homeDirectory = lib.mkDefault "home/${config.hostAttr.primaryUsername}";
     stateVersion = lib.mkDefault "24.11";
     sessionVariables = {
     };

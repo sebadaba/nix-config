@@ -12,8 +12,6 @@
         modules = [
           ./hosts/nixos/nostromo
 
-          inputs.stylix.nixosModules.stylix
-
           inputs.base16.nixosModule
         ];
       };
@@ -25,7 +23,7 @@
     # ========= Package Sources =========
     #
     # Default/Main source.
-    nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
 
     # This is a source for critical packages that need to be in a stable branch always.
     # This way nixpkgs can be set to the unstable branch to get a jump start

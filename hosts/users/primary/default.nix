@@ -23,8 +23,6 @@ in {
     sops
   ];
 
-  # Import the user's personal/home configurations, unless the environment is minimal
-
   home-manager = {
     extraSpecialArgs = {
       inherit pkgs inputs;
@@ -32,7 +30,8 @@ in {
     };
     users.${hostAttr.primaryUsername}.imports = lib.flatten (
       {config, ...}:
-        import ../../../home/${hostAttr.primaryUsername}/${hostAttr.hostname}.nix {
+        import
+        ../../../home/${hostAttr.primaryUsername}/${hostAttr.hostname}.nix {
           inherit
             pkgs
             inputs
@@ -42,5 +41,6 @@ in {
             ;
         }
     );
+    backupFileExtension = "backup";
   };
 }

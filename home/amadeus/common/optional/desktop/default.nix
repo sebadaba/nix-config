@@ -10,6 +10,7 @@
     ./hyprland.nix
     ./hyprlock.nix
     ./rofi.nix
+    ./theming.nix
     ./waybar.nix
     ./wlogout.nix
   ];
@@ -22,7 +23,6 @@
       wl-clipboard
       grim
       slurp
-      libsForQt5.qt5ct
       qimgv
       ulauncher
     ];
