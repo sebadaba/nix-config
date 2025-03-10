@@ -17,7 +17,7 @@
   # ========== Core Host Attributes ==========
   #
   hostAttr = {
-    primaryUsername = "amadeus";
+    primaryUsername = "khaen";
   };
 
   networking.hostName = config.hostAttr.hostname;

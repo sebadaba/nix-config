@@ -15,6 +15,14 @@
           inputs.base16.nixosModule
         ];
       };
+      romulus = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/nixos/romulus
+
+          inputs.base16.nixosModule
+        ];
+      };
     };
   };
 
