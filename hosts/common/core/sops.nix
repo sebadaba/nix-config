@@ -24,6 +24,7 @@ in {
       "users/${config.hostAttr.primaryUsername}/password" = {
         neededForUsers = true;
       };
+      "tailscale_auth_key" = {};
     };
   };
 }

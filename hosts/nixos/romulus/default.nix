@@ -33,7 +33,6 @@
   };
 
   time.timeZone = "America/Santiago";
-  services.openssh.enable = true;
 
   boot = {
     loader = {
@@ -58,11 +57,13 @@
 
   system.stateVersion = "24.11";
 
-  # PROVISIONAL
   services = {
+    openssh.enable = true;
+    tailscale.enable = true;
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
+      # PROVISIONAL
       desktopManager.gnome.enable = true;
     };
   };
