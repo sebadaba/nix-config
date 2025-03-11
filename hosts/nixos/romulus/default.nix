@@ -24,6 +24,8 @@
     # ========== Optional Configs ==========
     #
 
+    ../../common/optional/audio.nix
+    ../../common/optional/hyprland.nix
   ];
   hostAttr = {
     hostname = "romulus";
@@ -38,13 +40,13 @@
       systemd-boot = {
         enable = true;
         xbootldrMountPoint = "/boot";
+        consoleMode = "2";
       };
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/efi";
       };
     };
-  
   };
 
   stylix = {
@@ -56,7 +58,7 @@
 
   system.stateVersion = "24.11";
 
-# PROVISIONAL
+  # PROVISIONAL
   services = {
     xserver = {
       enable = true;
