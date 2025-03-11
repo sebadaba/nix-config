@@ -24,11 +24,11 @@
             on-timeout = "hyprlock"; # command to run when timeout has passed
             # on-resume = "notify-send \"Welcome back to your desktop!\"";  # command to run when activity is detected after timeout has fired.
           }
-          # Suspend
+          # Monitor off
           {
             timeout = 60 * 20; # in seconds
-            on-timeout = "systemctl suspend"; # command to run when timeout has passed
-            # on-resume = "notify-send \"Welcome back to your desktop!\"" # command to run when activity is detected after timeout has fired.
+            on-timeout = "hyprctl dispatch dpms off"; # command to run when timeout has passed
+            on-resume = "hyprctl dispatch dpms on"; # command to run when activity is detected after timeout has fired.
           }
         ];
       };
