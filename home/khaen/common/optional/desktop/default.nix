@@ -19,7 +19,7 @@
     xdg.enable = true;
     home.packages = with pkgs; [
       libsForQt5.dolphin
-      swww
+      hyprpaper
       wl-clipboard
       grim
       slurp

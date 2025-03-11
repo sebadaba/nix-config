@@ -76,8 +76,8 @@
           "$mainMod, mouse:273, resizeactive"
         ];
         exec-once = [
-          "hyprlock"
-          "swww init"
+          #"hyprlock"
+          "hyprpaper"
           "waybar"
           "flameshot"
         ];
@@ -140,9 +140,14 @@
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
             workspace_swipe = off
         }
+        xwayland {
+          # Makes XWayland windows not look blurry/pixelated
+          force_zero_scaling = true
+        }
       '';
 
       xwayland.enable = true;
+      systemd.enable = false; # UWSM compatibility
     };
   };
 }
