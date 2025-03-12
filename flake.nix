@@ -64,10 +64,14 @@
     base16.url = "github:SenchoPens/base16.nix";
     stylix.url = "github:danth/stylix/release-24.11";
 
-    # Private secrets repo
+    # Private repos
     nix-secrets = {
       url = "git+ssh://git@github.com/sebadaba/nix-secrets.git?ref=main&shallow=1";
       inputs = {};
+    };
+    wallpapers = {
+      url = "git+ssh://git@github.com/sebadaba/wallpapers.git?ref=main&shallow=1";
+      flake = false;
     };
   };
 }

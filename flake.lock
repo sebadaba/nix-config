@@ -402,7 +402,8 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "wallpapers": "wallpapers"
       }
     },
     "sops-nix": {
@@ -521,6 +522,24 @@
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
         "type": "github"
+      }
+    },
+    "wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741730496,
+        "narHash": "sha256-HrPtcu2y4aaKrS8Fv783YUCjh1Ep7MT3o49nZOxzx7E=",
+        "ref": "main",
+        "rev": "ccb71d59f12c9d1c353edbda7815f76db7ef67a4",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/sebadaba/wallpapers.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/sebadaba/wallpapers.git"
       }
     }
   },

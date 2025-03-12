@@ -36,8 +36,6 @@
   };
 
   time.timeZone = "America/Santiago";
-  services.openssh.enable = true;
-  services.actual.enable = true;
 
   boot = {
     loader = {
@@ -57,10 +55,16 @@
 
   stylix = {
     enable = true;
-    image = /home/${config.hostAttr.primaryUsername}/synced/wallpaper/sunrise-mountain-416BF.png;
+    image = "${builtins.toString inputs.wallpapers}/sunrise-mountain-416BF.png";
     #base16Scheme = config.hostAttr.scheme;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
   };
 
   system.stateVersion = "24.11";
+
+  services = {
+    openssh.enable = true;
+    tailscale.enable = true;
+    actual.enable = true;
+  };
 }

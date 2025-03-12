@@ -50,7 +50,7 @@
 
   stylix = {
     enable = true;
-    image = /home/${config.hostAttr.primaryUsername}/synced/wallpaper/sunrise-mountain-416BF.png;
+    image = "${builtins.toString inputs.wallpapers}/sunrise-mountain-416BF.png";
     #base16Scheme = config.hostAttr.scheme;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
   };
