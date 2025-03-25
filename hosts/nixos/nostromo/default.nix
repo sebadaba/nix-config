@@ -29,6 +29,7 @@
     ../../common/optional/audio.nix
     ../../common/optional/greetd.nix
     ../../common/optional/hyprland.nix
+    ../../common/optional/reboot2windows.nix
   ];
   hostAttr = {
     hostname = "nostromo";
@@ -39,18 +40,16 @@
 
   boot = {
     loader = {
-      grub = {
+      systemd-boot = {
         enable = true;
-        efiSupport = true;
-        devices = ["nodev"];
-        useOSProber = true;
+        xbootldrMountPoint = "/boot";
+        consoleMode = "2";
       };
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
+        efiSysMountPoint = "/efi";
       };
     };
-    initrd.systemd.enable = true;
   };
 
   stylix = {
