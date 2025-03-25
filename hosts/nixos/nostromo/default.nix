@@ -29,6 +29,7 @@
     ../../common/optional/audio.nix
     ../../common/optional/greetd.nix
     ../../common/optional/hyprland.nix
+    ../../common/optional/librewolf.nix
   ];
   hostAttr = {
     hostname = "nostromo";
