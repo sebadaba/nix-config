@@ -26,6 +26,7 @@
 
     ../../common/optional/audio.nix
     ../../common/optional/hyprland.nix
+    ../../common/optional/librewolf.nix
   ];
   hostAttr = {
     hostname = "romulus";

@@ -67,8 +67,25 @@
           "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
           # Screenshot
-          "$mainMod, Print, exec, flameshot gui --raw | wl-copy"
+          ", Print, exec, flameshot gui --raw | wl-copy"
         ];
+
+        # Binds that work when locked.
+        bindl = [
+          # Mute
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ];
+
+        # Binds that work when locked, and repeats if held down.
+        bindel = [
+          # Brightness +/- (0% - 100%)
+          ", XF86MonBrightnessUp, exec, brightnessctl s 2%+"
+          ", XF86MonBrightnessDown, exec, brightnessctl s 2%-"
+          # Audio +/- (0% - 100%)
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%-"
+        ];
+
         bindm = [
           # Move window ($mainMod + LMB)
           "$mainMod, mouse:272, movewindow"

@@ -25,6 +25,7 @@
       slurp
       qimgv
       ulauncher
+      brightnessctl
     ];
   };
 }
