@@ -11,7 +11,7 @@
     #
     common/optional/desktop
     common/optional/development
-    common/optional/browser.nix
+    #common/optional/browser.nix
     #common/optional/mathematica.nix
     common/optional/terminal.nix
   ];
