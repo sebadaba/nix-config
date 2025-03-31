@@ -32,6 +32,7 @@
     blender
     vesktop
     libreoffice
+    paperwork
   ];
 
   nix = {

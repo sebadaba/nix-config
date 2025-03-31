@@ -41,6 +41,8 @@ in {
             "custom/separator#blank"
             "group/audio"
             "custom/separator#blank"
+            "network"
+            "custom/separator#blank"
             "custom/power"
           ];
 
