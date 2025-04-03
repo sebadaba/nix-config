@@ -1,8 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
     policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      Cookies = {
+        Allow = inputs.nix-secrets.browser.cookies.allowedSites;
+      };
       ExtensionSettings = {
         # How to get an extension's GUID:
         # 1) Go to the extension's store page and press F12 (Firefox).
@@ -24,5 +33,9 @@
         };
       };
     };
+    # Preferences that are not covered by policies.json. See https://librewolf.net/docs/settings/
+    autoConfig = ''
+      defaultPref("privacy.resistFingerprinting.letterboxing", true);
+    '';
   };
 }
