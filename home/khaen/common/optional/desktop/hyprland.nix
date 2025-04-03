@@ -11,7 +11,7 @@
       #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       settings = {
         # Global
-        "$terminal" = "footclient";
+        "$terminal" = "wezterm";
         "$fileManager" = "dolphin";
         "$menu" = "rofi -show drun -show-icons";
         "$mainMod" = "SUPER";

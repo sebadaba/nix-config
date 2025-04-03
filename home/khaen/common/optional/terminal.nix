@@ -12,9 +12,8 @@
       enable = true;
       enableZshIntegration = true;
     };
-    foot = {
+    wezterm = {
       enable = true;
-      server.enable = true;
     };
   };
   home.packages = with pkgs; [
