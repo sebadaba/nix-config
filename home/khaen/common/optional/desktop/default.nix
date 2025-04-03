@@ -10,6 +10,7 @@
     ./hyprland.nix
     ./hyprlock.nix
     ./rofi.nix
+    ./swaync.nix
     ./theming.nix
     ./waybar.nix
     ./wlogout.nix
