@@ -25,8 +25,10 @@
     #
 
     ../../common/optional/audio.nix
+    ../../common/optional/fprintd.nix
     ../../common/optional/hyprland.nix
     ../../common/optional/librewolf.nix
+    ../../common/optional/trackpoint.nix
   ];
   hostAttr = {
     hostname = "romulus";
