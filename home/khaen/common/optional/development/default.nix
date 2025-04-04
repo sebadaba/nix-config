@@ -7,7 +7,7 @@
   imports = [
     ./c.nix
     ./java.nix
-    ./python.nix
+    #./python.nix
     ./vscode.nix
   ];
   programs = {
