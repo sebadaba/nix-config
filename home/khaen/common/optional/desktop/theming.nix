@@ -75,6 +75,6 @@
 
   qt = {
     enable = true;
-    platformTheme.name = "qtct";
+    platformTheme.name = lib.mkDefault "qtct";
   };
 }
