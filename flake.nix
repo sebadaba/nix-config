@@ -1,30 +1,32 @@
 {
   description = "sebadaba's Nix config flake";
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: {
-    nixosConfigurations = {
-      nostromo = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/nixos/nostromo
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations = {
+        nostromo = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/nixos/nostromo
 
-          inputs.base16.nixosModule
-        ];
-      };
-      romulus = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/nixos/romulus
+            inputs.base16.nixosModule
+          ];
+        };
+        romulus = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/nixos/romulus
 
-          inputs.base16.nixosModule
-        ];
+            inputs.base16.nixosModule
+          ];
+        };
       };
     };
-  };
 
   inputs = {
     #
@@ -43,7 +45,7 @@
     hardware.url = "github:nixos/nixos-hardware";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -62,12 +64,12 @@
     };
     # Theming
     base16.url = "github:SenchoPens/base16.nix";
-    stylix.url = "github:danth/stylix/release-24.11";
+    stylix.url = "github:danth/stylix";
 
     # Private repos
     nix-secrets = {
       url = "git+ssh://git@github.com/sebadaba/nix-secrets.git?ref=main&shallow=1";
-      inputs = {};
+      inputs = { };
     };
     wallpapers = {
       url = "git+ssh://git@github.com/sebadaba/wallpapers.git?ref=main&shallow=1";
