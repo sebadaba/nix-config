@@ -22,6 +22,7 @@ in {
   environment.systemPackages = with pkgs; [
     sops
     usbutils
+    pciutils
   ];
 
   home-manager = {
