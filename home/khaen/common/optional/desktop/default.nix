@@ -11,6 +11,7 @@
     ./hyprlock.nix
     ./rofi.nix
     ./swaync.nix
+    ./swayosd.nix
     ./theming.nix
     ./waybar.nix
     ./wlogout.nix

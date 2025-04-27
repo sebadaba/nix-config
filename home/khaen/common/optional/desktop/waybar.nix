@@ -31,6 +31,8 @@ in {
             "hyprland/workspaces"
           ];
           modules-right = [
+            "custom/notification"
+            "custom/separator#blank"
             "tray"
             "custom/separator#blank"
             "mpris"
@@ -183,6 +185,26 @@ in {
             format = "";
             interval = "once";
             tooltip = false;
+          };
+          "custom/notification" = {
+            tooltip = false;
+            format = "{} {icon}";
+            "format-icons" = {
+              notification = "󱅫";
+              none = "";
+              "dnd-notification" = " ";
+              "dnd-none" = "󰂛";
+              "inhibited-notification" = " ";
+              "inhibited-none" = "";
+              "dnd-inhibited-notification" = " ";
+              "dnd-inhibited-none" = " ";
+            };
+            "return-type" = "json";
+            "exec-if" = "which swaync-client";
+            exec = "swaync-client -swb";
+            "on-click" = "sleep 0.1 && swaync-client -t -sw";
+            "on-click-right" = "sleep 0.1 && swaync-client -d -sw";
+            escape = true;
           };
         }
       ];

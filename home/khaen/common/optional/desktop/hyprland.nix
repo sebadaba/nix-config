@@ -72,18 +72,20 @@
 
         # Binds that work when locked.
         bindl = [
-          # Mute
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          # Mute output audio
+          ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+          # Mute input audio
+          ", XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
+          # Brightness +/- (0% - 100%)
+          ", XF86MonBrightnessUp, exec, swayosd-client --brightness +5"
+          ", XF86MonBrightnessDown, exec, swayosd-client --brightness -5"
         ];
 
         # Binds that work when locked, and repeats if held down.
         bindel = [
-          # Brightness +/- (0% - 100%)
-          ", XF86MonBrightnessUp, exec, brightnessctl s 2%+"
-          ", XF86MonBrightnessDown, exec, brightnessctl s 2%-"
-          # Audio +/- (0% - 100%)
-          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+"
-          ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%-"
+          # Audio +/- (0% - 120%)
+          ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume 6 --max-volume 120"
+          ", XF86AudioLowerVolume, exec, swayosd-client --output-volume -6 --max-volume 120"
         ];
 
         bindm = [
@@ -124,8 +126,7 @@
         monitor=HDMI-A-2,3440x1440@100,0x0,1
         input {
             kb_layout = latam,us
-            kb_variant =
-            kb_model =dofor more
+            repeat_rate = 25
             # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
         }
         decoration {
