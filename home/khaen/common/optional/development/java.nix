@@ -4,8 +4,14 @@
   config,
   ...
 }: {
-  home.packages = with pkgs; [
-    jdk # Java Development Kit.
-    scenebuilder # To make Java apps with GUIs using javafx.
-  ];
+  programs.java = {
+    enable = true;
+    package =
+      pkgs.jdk21.override
+      {
+        enableJavaFX = true;
+        openjfx_jdk = pkgs.javaPackages.openjfx21;
+      };
+  };
+  home.packages = with pkgs; [scenebuilder];
 }
