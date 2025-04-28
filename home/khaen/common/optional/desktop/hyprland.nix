@@ -96,6 +96,7 @@
           "hyprpaper"
           "waybar"
           "flameshot"
+          "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # For xdg-desktop-portal-hyprland
         ];
         windowrulev2 = [
           "float, class:(com.saivert.pwvucontrol)" # Volume control
