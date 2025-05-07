@@ -1,9 +1,8 @@
 {
   pkgs,
-  lib,
-  config,
   ...
-}: {
+}:
+{
   programs = {
     zsh = {
       enable = true;
@@ -12,7 +11,7 @@
       enable = true;
       enableZshIntegration = true;
     };
-    wezterm = {
+    alacritty = {
       enable = true;
     };
   };

@@ -1,17 +1,14 @@
 {
-  config,
-  lib,
-  pkgs,
-  inputs,
   ...
-}: {
+}:
+{
   config = {
     wayland.windowManager.hyprland = {
       enable = true;
       #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       settings = {
         # Global
-        "$terminal" = "wezterm";
+        "$terminal" = "alacritty";
         "$fileManager" = "dolphin";
         "$menu" = "rofi -show drun -show-icons";
         "$mainMod" = "SUPER";
