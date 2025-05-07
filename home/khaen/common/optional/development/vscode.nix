@@ -15,7 +15,16 @@ let
         mechatroner.rainbow-csv # CSV colors
       ];
       userSettings = {
+        "window.titleBarStyle" = "custom"; # Avoids crash on startup on Hyprland.
+        "workbench.iconTheme" = "vscode-icons";
+
+        # Editor
+        "editor.tabSize" = 4; # Size of 1 tab == Size of 4 spaces.
+        "editor.insertSpaces" = false; # Insert a tab character, not a couple of spaces.
+        "editor.detectIndentation" = true; # If a file has another format, stick with it.
         "editor.formatOnSave" = true;
+
+        # Nix
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
         "nix.serverSettings" = {
@@ -28,20 +37,19 @@ let
       };
     };
     Java = lib.mkIf config.programs.java.enable {
-      extensions = with pkgs.vscode-extensions; profiles.Base.extensions ++ [ vscjava.vscode-java-pack ];
+      extensions =
+        with pkgs.vscode-extensions;
+        profiles.Base.extensions
+        ++ [
+          redhat.java # Java syntax highlight
+        ];
+      userSettings = profiles.Base.userSettings;
     };
   };
 in
 {
   programs.vscode = {
     enable = true;
-    userSettings = {
-      "window.titleBarStyle" = "custom"; # Avoids crash on startup on Hyprland.
-      # Tabs
-      "editor.tabSize" = 4; # Size of 1 tab == Size of 4 spaces.
-      "editor.insertSpaces" = false; # Insert a tab character, not a couple of spaces.
-      "editor.detectIndentation" = true; # If a file has another format, stick with it.
-    };
     mutableExtensionsDir = false;
     profiles = profiles;
   };
