@@ -10,7 +10,7 @@ in {
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
-      package = nixpkgs-stable.pipewire;
+      package = pkgs.pipewire;
 
       alsa = {
         enable = true;
