@@ -54,7 +54,8 @@
     };
   };
 
-  xdg.configFile = {
+  /*
+     xdg.configFile = {
     qt5ct = {
       target = "qt5ct/qt5ct.conf";
       text = lib.generators.toINI {} {
@@ -72,6 +73,7 @@
       };
     };
   };
+  */
 
   qt = {
     enable = true;
