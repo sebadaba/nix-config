@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     #
     # ========== Hardware ==========
@@ -29,6 +30,7 @@
     ../../common/optional/fprintd.nix
     ../../common/optional/hyprland.nix
     ../../common/optional/librewolf.nix
+    ../../common/optional/syncthing.nix
     ../../common/optional/trackpoint.nix
   ];
   hostAttr = {
