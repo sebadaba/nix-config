@@ -4,7 +4,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     #
     # ========== Hardware ==========
@@ -31,6 +32,7 @@
     ../../common/optional/hyprland.nix
     ../../common/optional/librewolf.nix
     ../../common/optional/reboot2windows.nix
+    ../../common/optional/syncthing.nix
   ];
   hostAttr = {
     hostname = "nostromo";
@@ -65,6 +67,9 @@
   services = {
     openssh.enable = true;
     tailscale.enable = true;
-    actual.enable = true;
+    actual = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 }
