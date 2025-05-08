@@ -4,7 +4,8 @@
   pkgs,
   hostAttr,
   ...
-}: {
+}:
+{
   imports = lib.flatten [
     ../../../../modules/common/host-attr.nix
     #../../../../modules/home-manager
@@ -19,6 +20,7 @@
     username = lib.mkDefault config.hostAttr.primaryUsername;
     homeDirectory = lib.mkDefault "home/${config.hostAttr.primaryUsername}";
     stateVersion = lib.mkDefault "24.11";
+    enableNixpkgsReleaseCheck = false;
     sessionVariables = {
     };
   };
@@ -30,9 +32,10 @@
     vlc
     bitwarden
     blender
-    vesktop
     libreoffice
     paperwork
+    discord-canary
+    calibre
   ];
 
   nix = {
