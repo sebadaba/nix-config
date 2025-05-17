@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     #
     # ========== Required Configs ==========
@@ -15,6 +16,7 @@
     #common/optional/mathematica.nix
     common/optional/terminal.nix
     common/optional/game-streaming.nix
+    common/optional/thunderbird.nix
     common/optional/desktop/unredis/packettracer.nix
   ];
 }
