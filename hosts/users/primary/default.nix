@@ -4,14 +4,20 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   hostAttr = config.hostAttr;
-in {
+in
+{
   users.users.${hostAttr.primaryUsername} = {
     name = hostAttr.primaryUsername;
     hashedPasswordFile = config.sops.secrets."users/${hostAttr.primaryUsername}/password".path;
     isNormalUser = true;
-    extraGroups = ["wheel" "docker" "audio"];
+    extraGroups = [
+      "wheel"
+      "docker"
+      "audio"
+    ] ++ lib.optionals config.networking.networkmanager.enable [ "networkmanager" ];
     shell = pkgs.zsh; # default shell
   };
 
@@ -31,17 +37,16 @@ in {
       hostAttr = config.hostAttr;
     };
     users.${hostAttr.primaryUsername}.imports = lib.flatten (
-      {config, ...}:
-        import
-        ../../../home/${hostAttr.primaryUsername}/${hostAttr.hostname}.nix {
-          inherit
-            pkgs
-            inputs
-            config
-            lib
-            hostAttr
-            ;
-        }
+      { config, ... }:
+      import ../../../home/${hostAttr.primaryUsername}/${hostAttr.hostname}.nix {
+        inherit
+          pkgs
+          inputs
+          config
+          lib
+          hostAttr
+          ;
+      }
     );
     backupFileExtension = "backup";
   };

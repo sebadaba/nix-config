@@ -30,6 +30,7 @@
     ../../common/optional/fprintd.nix
     ../../common/optional/hyprland.nix
     ../../common/optional/librewolf.nix
+    ../../common/optional/networkmanager.nix
     ../../common/optional/syncthing.nix
     ../../common/optional/trackpoint.nix
   ];
@@ -70,7 +71,6 @@
       enable = true;
       displayManager.gdm.enable = true;
       # PROVISIONAL
-      desktopManager.gnome.enable = true;
     };
   };
 }

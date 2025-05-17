@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   imports = [
     ./flameshot.nix
     ./hypridle.nix
@@ -28,6 +29,7 @@
       qimgv
       ulauncher
       brightnessctl
+      networkmanagerapplet
     ];
   };
 }
