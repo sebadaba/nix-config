@@ -1,13 +1,13 @@
 {
-  config,
   lib,
   pkgs,
-  inputs,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     #libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
+    libsForQt5.kio-extras
     # (catppuccin-papirus-folders.override {
     #   accent = "blue";
     #   flavor = "mocha";
@@ -55,28 +55,28 @@
   };
 
   /*
-     xdg.configFile = {
-    qt5ct = {
-      target = "qt5ct/qt5ct.conf";
-      text = lib.generators.toINI {} {
-        Appearance = {
-          icon_theme = "Papirus-Dark";
+       xdg.configFile = {
+      qt5ct = {
+        target = "qt5ct/qt5ct.conf";
+        text = lib.generators.toINI {} {
+          Appearance = {
+            icon_theme = "Papirus-Dark";
+          };
+        };
+      };
+      qt6ct = {
+        target = "qt6ct/qt6ct.conf";
+        text = lib.generators.toINI {} {
+          Appearance = {
+            icon_theme = "Papirus-Dark";
+          };
         };
       };
     };
-    qt6ct = {
-      target = "qt6ct/qt6ct.conf";
-      text = lib.generators.toINI {} {
-        Appearance = {
-          icon_theme = "Papirus-Dark";
-        };
-      };
-    };
-  };
   */
 
   qt = {
     enable = true;
-    platformTheme.name = lib.mkDefault "qtct";
+    platformTheme.name = lib.mkForce "qt5ct";
   };
 }

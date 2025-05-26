@@ -1,20 +1,20 @@
 # hosts level sops. see home/[user]/common/optional/sops.nix for home/user level
 {
-  pkgs,
-  lib,
   inputs,
   config,
   ...
-}: let
+}:
+let
   #sopsFolder = builtins.toString inputs.nix-secrets + "/sops";
   sopsFolder = builtins.toString inputs.nix-secrets;
-in {
+in
+{
   sops = {
     defaultSopsFile = "${sopsFolder}/secrets.yaml";
     validateSopsFiles = false;
     age = {
       # automatically import host SSH keys as age keys
-      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
     # secrets will be output to /run/secrets
     # e.g. /run/secrets/msmtp-password
@@ -24,7 +24,7 @@ in {
       "users/${config.hostAttr.primaryUsername}/password" = {
         neededForUsers = true;
       };
-      "tailscale_auth_key" = {};
+      "tailscale_auth_key" = { };
     };
   };
 }
