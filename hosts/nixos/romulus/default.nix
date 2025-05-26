@@ -31,6 +31,7 @@
     ../../common/optional/hyprland.nix
     ../../common/optional/librewolf.nix
     ../../common/optional/networkmanager.nix
+    ../../common/optional/pgadmin.nix
     ../../common/optional/syncthing.nix
     ../../common/optional/trackpoint.nix
   ];
