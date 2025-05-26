@@ -1,10 +1,10 @@
 {
   config,
   pkgs,
-  lib,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ../../../modules/common
     ../../users/primary
@@ -21,6 +21,11 @@
   };
 
   networking.hostName = config.hostAttr.hostname;
+  hardware = {
+    enableAllFirmware = true;
+    firmware = [ pkgs.linux-firmware ];
+  };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   #
   # ========== ==========
   #
@@ -41,7 +46,7 @@
       min-free = 128000000; # 128MB
       max-free = 1000000000; # 1GB
 
-      trusted-users = ["@wheel"];
+      trusted-users = [ "@wheel" ];
 
       auto-optimise-store = true;
       warn-dirty = false;
