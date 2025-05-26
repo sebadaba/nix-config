@@ -45,11 +45,22 @@ let
         ];
       userSettings = profiles.Base.userSettings;
     };
+    Web = {
+      extensions =
+        with pkgs.vscode-extensions;
+        profiles.Base.extensions
+        ++ [
+          vue.volar
+          devsense.phptools-vscode
+        ];
+      userSettings = profiles.Base.userSettings;
+    };
   };
 in
 {
   programs.vscode = {
     enable = true;
+    package = pkgs.vscodium;
     mutableExtensionsDir = false;
     profiles = profiles;
   };
