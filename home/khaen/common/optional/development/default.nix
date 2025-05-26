@@ -1,9 +1,8 @@
 {
-  config,
   pkgs,
-  lib,
   ...
-}: {
+}:
+{
   imports = [
     ./c.nix
     ./java.nix
@@ -17,4 +16,7 @@
       nix-direnv.enable = true;
     };
   };
+  home.packages = with pkgs; [
+    devenv
+  ];
 }
