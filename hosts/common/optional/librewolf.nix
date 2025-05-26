@@ -2,7 +2,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+# now using home-manager module.
+{
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
@@ -38,4 +40,5 @@
       defaultPref("privacy.resistFingerprinting.letterboxing", true);
     '';
   };
+  config.stylix.targets.librewolf.profileNames = [ "primary" ];
 }
