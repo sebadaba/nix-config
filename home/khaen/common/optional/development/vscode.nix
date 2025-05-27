@@ -13,6 +13,8 @@ let
         vscode-icons-team.vscode-icons # Better icons
         jnoortheen.nix-ide # Nix syntax highlight,  formatting..
         mechatroner.rainbow-csv # CSV colors
+        github.copilot # Copilot
+        github.copilot-chat # Copilot chat
       ];
       userSettings = {
         "window.titleBarStyle" = "custom"; # Avoids crash on startup on Hyprland.
