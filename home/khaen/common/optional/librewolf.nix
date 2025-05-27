@@ -1,5 +1,4 @@
 {
-  pkgs,
   inputs,
   ...
 }:
@@ -7,7 +6,6 @@
 {
   programs.librewolf = {
     enable = true;
-    package = pkgs.librewolf;
     policies = {
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
@@ -22,6 +20,10 @@
         bitwarden
         search-by-image
       ];
+      settings = {
+        "privacy.resistFingerprinting.letterboxing" = true;
+      };
     };
   };
+  stylix.targets.librewolf.profileNames = [ "primary" ];
 }

@@ -40,5 +40,4 @@
       defaultPref("privacy.resistFingerprinting.letterboxing", true);
     '';
   };
-  config.stylix.targets.librewolf.profileNames = [ "primary" ];
 }
