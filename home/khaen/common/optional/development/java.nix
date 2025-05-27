@@ -10,8 +10,11 @@
       openjfx_jdk = pkgs.javaPackages.openjfx21;
     };
   };
-  # Gluon Scenebuilder
-  home.packages = with pkgs; [ scenebuilder ];
+
+  home.packages = with pkgs; [
+    scenebuilder # Gluon Scenebuilder
+    maven
+  ];
   ## Drag and drop issue for Scenebuilder on Hyprland fix
   wayland.windowManager.hyprland.settings.windowrule = [
     "stayfocused,class:com.oracle.javafx.scenebuilder.app.SceneBuilderApp"
