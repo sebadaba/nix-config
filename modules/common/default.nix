@@ -3,8 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
-    ./host-attr.nix
+    ./host-spec.nix
   ];
 }

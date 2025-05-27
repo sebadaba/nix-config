@@ -14,13 +14,13 @@
   ];
 
   #
-  # ========== Core Host Attributes ==========
+  # ========== Core Host Specifications ==========
   #
-  hostAttr = {
+  hostSpec = {
     primaryUsername = "khaen";
   };
 
-  networking.hostName = config.hostAttr.hostname;
+  networking.hostName = config.hostSpec.hostname;
   hardware = {
     enableAllFirmware = true;
     firmware = [ pkgs.linux-firmware ];

@@ -7,7 +7,8 @@
   ...
 }:
 with lib;
-with pkgs; let
+with pkgs;
+let
   # ========== Icon Download ==========
   icons = {
     url = "https://raw.githubusercontent.com/zDyanTB/HyprNova/c39f826448fa046c0acae3fd652180e69b6909a9/.config/wlogout/icons/";
@@ -69,8 +70,9 @@ with pkgs; let
     hypr_scale=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .scale')
     wlogout --protocol layer-shell -b 5 -T $(awk "BEGIN {printf \"%.0f\", $A_1080 * 1080 * $hypr_scale / $resolution}") -B $(awk "BEGIN {printf \"%.0f\", $B_1080 * 1080 * $hypr_scale / $resolution}") &
   '';
-  scheme = config.hostAttr.scheme;
-in {
+  scheme = config.hostSpec.scheme;
+in
+{
   config = {
     programs.wlogout = {
       enable = true;

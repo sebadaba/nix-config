@@ -5,9 +5,11 @@
   pkgs,
   inputs,
   ...
-}: let
-  scheme = config.hostAttr.scheme;
-in {
+}:
+let
+  scheme = config.hostSpec.scheme;
+in
+{
   config = {
     programs.waybar = {
       enable = true;
@@ -101,11 +103,11 @@ in {
             on-scroll-up = "hyprctl dispatch workspace e+1";
             on-scroll-down = "hyprctl dispatch workspace e-1";
             persistent-workspaces = {
-              "1" = [];
-              "2" = [];
-              "3" = [];
-              "4" = [];
-              "5" = [];
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
             };
             format-icons = {
               active = "";
@@ -131,7 +133,16 @@ in {
             interval = 1;
             format-alt-click = "click";
             format-alt = "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛";
-            format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+            format-icons = [
+              "▁"
+              "▂"
+              "▃"
+              "▄"
+              "▅"
+              "▆"
+              "▇"
+              "█"
+            ];
             # on-click =
           };
           memory = {
@@ -146,11 +157,14 @@ in {
           temperature = {
             interval = 10;
             tooltip = true;
-            hwmon-path = ["/sys/class/hwmon/hwmon1/temp1_input" "/sys/class/thermal/thermal_zone0/temp"];
+            hwmon-path = [
+              "/sys/class/hwmon/hwmon1/temp1_input"
+              "/sys/class/thermal/thermal_zone0/temp"
+            ];
             critical-threshold = 80;
             format-critical = "{temperatureC}°C {icon}";
             format = "{temperatureC}°C {icon}";
-            format-icons = ["󰈸"];
+            format-icons = [ "󰈸" ];
           };
           disk = {
             interval = 30;

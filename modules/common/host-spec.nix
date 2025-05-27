@@ -3,8 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
-  options.hostAttr = {
+}:
+{
+  options.hostSpec = {
     primaryUsername = lib.mkOption {
       type = lib.types.str;
       description = "The username of the host's primary user";

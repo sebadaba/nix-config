@@ -35,7 +35,7 @@
     ../../common/optional/syncthing.nix
     ../../common/optional/trackpoint.nix
   ];
-  hostAttr = {
+  hostSpec = {
     hostname = "romulus";
     scheme = config.lib.base16.mkSchemeAttrs "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
   };
@@ -59,7 +59,7 @@
   stylix = {
     enable = true;
     image = "${builtins.toString inputs.wallpapers}/sunrise-mountain-416BF.png";
-    #base16Scheme = config.hostAttr.scheme;
+    #base16Scheme = config.hostSpec.scheme;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
   };
 

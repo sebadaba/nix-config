@@ -6,12 +6,12 @@
   ...
 }:
 let
-  hostAttr = config.hostAttr;
+  hostSpec = config.hostSpec;
 in
 {
-  users.users.${hostAttr.primaryUsername} = {
-    name = hostAttr.primaryUsername;
-    hashedPasswordFile = config.sops.secrets."users/${hostAttr.primaryUsername}/password".path;
+  users.users.${hostSpec.primaryUsername} = {
+    name = hostSpec.primaryUsername;
+    hashedPasswordFile = config.sops.secrets."users/${hostSpec.primaryUsername}/password".path;
     isNormalUser = true;
     extraGroups = [
       "wheel"
@@ -29,22 +29,24 @@ in
     sops
     usbutils
     pciutils
+    zip
+    unzip
   ];
 
   home-manager = {
     extraSpecialArgs = {
       inherit pkgs inputs;
-      hostAttr = config.hostAttr;
+      hostSpec = config.hostSpec;
     };
-    users.${hostAttr.primaryUsername}.imports = lib.flatten (
+    users.${hostSpec.primaryUsername}.imports = lib.flatten (
       { config, ... }:
-      import ../../../home/${hostAttr.primaryUsername}/${hostAttr.hostname}.nix {
+      import ../../../home/${hostSpec.primaryUsername}/${hostSpec.hostname}.nix {
         inherit
           pkgs
           inputs
           config
           lib
-          hostAttr
+          hostSpec
           ;
       }
     );

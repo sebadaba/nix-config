@@ -2,23 +2,23 @@
   config,
   lib,
   pkgs,
-  hostAttr,
+  hostSpec,
   ...
 }:
 {
   imports = lib.flatten [
-    ../../../../modules/common/host-attr.nix
+    ../../../../modules/common/host-spec.nix
     #../../../../modules/home-manager
     ./git.nix
   ];
 
-  inherit hostAttr;
+  inherit hostSpec;
 
   #services.ssh-agent.enable = true;
 
   home = {
-    username = lib.mkDefault config.hostAttr.primaryUsername;
-    homeDirectory = lib.mkDefault "home/${config.hostAttr.primaryUsername}";
+    username = lib.mkDefault config.hostSpec.primaryUsername;
+    homeDirectory = lib.mkDefault "home/${config.hostSpec.primaryUsername}";
     stateVersion = lib.mkDefault "24.11";
     enableNixpkgsReleaseCheck = false;
     sessionVariables = {
@@ -36,6 +36,7 @@
     paperwork
     discord-canary
     calibre
+    chatbox
   ];
 
   nix = {
