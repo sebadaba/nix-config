@@ -17,7 +17,7 @@ let
         github.copilot-chat # Copilot chat
       ];
       userSettings = {
-        "window.titleBarStyle" = "custom"; # Avoids crash on startup on Hyprland.
+        "window.titleBarStyle" = lib.mkIf config.wayland.windowManager.hyprland.enable "custom"; # Avoids crash on startup on Hyprland.
         "workbench.iconTheme" = "vscode-icons";
 
         # Editor
@@ -54,6 +54,15 @@ let
         ++ [
           vue.volar
           devsense.phptools-vscode
+        ];
+      userSettings = profiles.Base.userSettings;
+    };
+    Cpp = {
+      extensions =
+        with pkgs.vscode-extensions;
+        profiles.Base.extensions
+        ++ [
+          ms-vscode.cpptools
         ];
       userSettings = profiles.Base.userSettings;
     };
