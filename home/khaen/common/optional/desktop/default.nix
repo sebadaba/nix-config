@@ -1,16 +1,14 @@
 {
   pkgs,
-  lib,
-  config,
   ...
 }:
 {
   imports = [
-    ./flameshot.nix
     ./hypridle.nix
     ./hyprland.nix
     ./hyprlock.nix
     ./rofi.nix
+    ./screenshots.nix
     ./swaync.nix
     ./swayosd.nix
     ./theming.nix
@@ -24,8 +22,6 @@
       libsForQt5.dolphin
       hyprpaper
       wl-clipboard
-      grim
-      slurp
       qimgv
       ulauncher
       brightnessctl
