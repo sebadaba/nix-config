@@ -27,6 +27,8 @@
 
     ../../common/optional/audio.nix
     ../../common/optional/bluetooth.nix
+    #../../common/optional/clion.nix
+    ../../common/optional/docker.nix
     ../../common/optional/fprintd.nix
     ../../common/optional/hyprland.nix
     #../../common/optional/librewolf.nix
@@ -74,4 +76,6 @@
       # PROVISIONAL
     };
   };
+
+  virtualisation.docker.storageDriver = "btrfs";
 }
