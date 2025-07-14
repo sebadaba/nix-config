@@ -37,6 +37,8 @@
     discord-canary
     calibre
     chatbox
+    gimp
+    pdftk
   ];
 
   nix = {

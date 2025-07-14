@@ -15,17 +15,27 @@
     ./waybar.nix
     ./wlogout.nix
   ];
-
-  config = {
-    xdg.enable = true;
-    home.packages = with pkgs; [
-      libsForQt5.dolphin
-      hyprpaper
-      wl-clipboard
-      qimgv
-      ulauncher
-      brightnessctl
-      networkmanagerapplet
-    ];
+  home.packages = with pkgs; [
+    libsForQt5.dolphin
+    hyprpaper
+    wl-clipboard
+    qimgv
+    ulauncher
+    brightnessctl
+    networkmanagerapplet
+    evince
+  ];
+  xdg = {
+    enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "image/png" = "qimgv.desktop";
+        "image/jpeg" = "qimgv.desktop";
+        "image/gif" = "qimgv.desktop";
+        "image/webp" = "qimgv.desktop";
+        "application/pdf" = "org.gnome.Evince.desktop";
+      };
+    };
   };
 }
