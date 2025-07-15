@@ -20,6 +20,8 @@
     primaryUsername = "khaen";
   };
 
+  time.timeZone = "America/Santiago";
+
   networking.hostName = config.hostSpec.hostname;
   hardware = {
     enableAllFirmware = true;
