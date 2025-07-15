@@ -17,6 +17,6 @@
     common/optional/game-streaming.nix
     common/optional/librewolf.nix
     common/optional/thunderbird.nix
-    common/optional/desktop/unredis/packettracer.nix
+    #common/optional/desktop/unredis/packettracer.nix
   ];
 }
