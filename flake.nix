@@ -7,25 +7,26 @@
       nixpkgs,
       ...
     }@inputs:
+    let
+      inherit (self) outputs;
+    in
     {
-      nixosConfigurations = {
-        nostromo = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/nixos/nostromo
+      nixosConfigurations = builtins.listToAttrs (
+        map (host: {
+          name = host;
+          value = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+              isDarwin = false;
+            };
+            modules = [
+              ./hosts/nixos/${host}
+              inputs.base16.nixosModule
+            ];
+          };
+        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
+      );
 
-            inputs.base16.nixosModule
-          ];
-        };
-        romulus = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/nixos/romulus
-
-            inputs.base16.nixosModule
-          ];
-        };
-      };
     };
 
   inputs = {
