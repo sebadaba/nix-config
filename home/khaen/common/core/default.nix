@@ -37,7 +37,7 @@
     discord-canary
     calibre
     chatbox
-    gimp
+    #gimp
     pdftk
   ];
 

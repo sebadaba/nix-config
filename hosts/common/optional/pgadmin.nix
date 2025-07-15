@@ -1,5 +1,10 @@
 # default: http://localhost:5050
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 {
   services.pgadmin = {
     enable = true;
@@ -11,4 +16,5 @@
     group = config.users.users.pgadmin.group;
     restartUnits = [ "pgadmin.service" ];
   };
+  services.postgresql.package = pkgs.postgresql;
 }

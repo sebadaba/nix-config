@@ -10,6 +10,6 @@
     valgrind
     qtcreator
     libsForQt5.full
-    jetbrains.clion
+    #jetbrains.clion
   ];
 }
