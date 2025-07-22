@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   inputs,
   ...
@@ -10,7 +9,7 @@
     #
     # ========== Hardware ==========
     #
-    ./hardware-configuration.nix
+    #./hardware-configuration.nix
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
 
@@ -18,8 +17,10 @@
     # ========== Disk Layout ==========
     #
     inputs.disko.nixosModules.disko
-    ../../common/disks/luks-btrfs-subvolumes.nix
-    { disk = "nvme0n1"; }
+    (import ../../common/disks/btrfs-subvolumes.nix {
+      disk = "/dev/nvme0n1";
+      swapSize = "6G";
+    })
     #
     # ========== Required Configs ==========
     #
@@ -61,4 +62,6 @@
       openFirewall = true;
     };
   };
+  #temp
+  nixpkgs.hostPlatform = "x86_64-linux";
 }
