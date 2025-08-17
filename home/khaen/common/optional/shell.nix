@@ -19,12 +19,8 @@
       enable = true;
       enableZshIntegration = true;
     };
-    alacritty = {
-      enable = true;
-    };
   };
   home.packages = with pkgs; [
-    xpipe
     macchina
   ];
   xdg.configFile = {

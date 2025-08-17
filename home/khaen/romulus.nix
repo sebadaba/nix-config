@@ -13,7 +13,7 @@
     common/optional/desktop
     common/optional/development
     #common/optional/mathematica.nix
-    common/optional/terminal.nix
+    common/optional/desktop/terminal.nix
     common/optional/game-streaming.nix
     common/optional/librewolf.nix
     common/optional/thunderbird.nix
