@@ -17,7 +17,6 @@
           value = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs outputs;
-              isDarwin = false;
             };
             modules = [
               ./hosts/nixos/${host}

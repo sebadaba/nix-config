@@ -53,7 +53,7 @@ let
         profiles.Base.extensions
         ++ [
           vue.volar
-          devsense.phptools-vscode
+          #devsense.phptools-vscode
         ];
       userSettings = profiles.Base.userSettings;
     };
