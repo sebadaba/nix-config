@@ -9,7 +9,7 @@
       settings = {
         # Global
         "$terminal" = "alacritty";
-        "$fileManager" = "dolphin";
+        "$fileManager" = "thunar";
         "$menu" = "rofi -show drun -show-icons";
         "$mainMod" = "SUPER";
 

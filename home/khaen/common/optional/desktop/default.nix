@@ -17,7 +17,6 @@
     ./wlogout.nix
   ];
   home.packages = with pkgs; [
-    libsForQt5.dolphin
     hyprpaper
     wl-clipboard
     qimgv
