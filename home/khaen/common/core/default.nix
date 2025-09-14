@@ -49,6 +49,7 @@
         "flakes"
       ];
       warn-dirty = false;
+      builders-use-substitutes = true;
     };
   };
 
