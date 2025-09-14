@@ -7,7 +7,6 @@
   home.packages = with pkgs; [
     #libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
-    libsForQt5.kio-extras
     # (catppuccin-papirus-folders.override {
     #   accent = "blue";
     #   flavor = "mocha";
