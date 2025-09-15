@@ -1,5 +1,7 @@
 {
   pkgs,
+  config,
+  lib,
   ...
 }:
 {
@@ -37,4 +39,9 @@
       };
     };
   };
+  home.activation.removeMimeAppsBackups = lib.hm.dag.entryAfter [ "checkLinkTargets" ] ''
+      if [ -d "${config.home.homeDirectory}/.config" ]; then
+    		rm -f ${config.home.homeDirectory}/.config/mimeapps.list.backup
+    	fi
+  '';
 }
