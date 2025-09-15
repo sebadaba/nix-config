@@ -9,7 +9,7 @@
     gnumake # GNU's Make
     valgrind
     qtcreator
-    libsForQt5.full
+    #libsForQt5.full # it compiles locally now?
     #jetbrains.clion
   ];
 }
