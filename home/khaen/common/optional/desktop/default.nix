@@ -20,7 +20,6 @@
     hyprpaper
     wl-clipboard
     qimgv
-    ulauncher
     brightnessctl
     networkmanagerapplet
     evince

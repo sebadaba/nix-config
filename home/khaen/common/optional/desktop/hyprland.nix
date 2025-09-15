@@ -10,7 +10,8 @@
         # Global
         "$terminal" = "alacritty";
         "$fileManager" = "thunar";
-        "$menu" = "rofi -show drun -show-icons";
+        #"$menu" = "rofi -show drun -show-icons";
+        "$menu" = "anyrun";
         "$mainMod" = "SUPER";
 
         bind = [
@@ -154,7 +155,6 @@
         }
         gestures {
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
-            workspace_swipe = off
         }
         xwayland {
           # Makes XWayland windows not look blurry/pixelated
