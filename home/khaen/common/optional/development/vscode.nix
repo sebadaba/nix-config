@@ -66,6 +66,17 @@ let
         ];
       userSettings = profiles.Base.userSettings;
     };
+    Latex = {
+      extensions =
+        with pkgs.vscode-extensions;
+        profiles.Base.extensions
+        ++ [
+          james-yu.latex-workshop
+        ];
+      userSettings = profiles.Base.userSettings // {
+        "latex-workshop.formatting.latex" = "tex-fmt";
+      };
+    };
   };
 in
 {
@@ -79,6 +90,8 @@ in
     nixfmt-rfc-style # Nix formatter
     nixd # Nix language server
     sublime-merge
+    texliveMedium
+    tex-fmt
   ];
   stylix.targets.vscode.profileNames = builtins.attrNames profiles;
 }
