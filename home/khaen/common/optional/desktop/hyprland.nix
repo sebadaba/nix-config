@@ -92,7 +92,7 @@
           "$mainMod, mouse:273, resizeactive"
         ];
         exec-once = [
-          #"hyprlock"
+          "hyprlock --immediate-render"
           "hyprpaper"
           "waybar"
           "flameshot"

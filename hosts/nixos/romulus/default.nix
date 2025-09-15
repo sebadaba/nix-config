@@ -30,6 +30,7 @@
     #../../common/optional/clion.nix
     ../../common/optional/docker.nix
     ../../common/optional/fprintd.nix
+    ../../common/optional/greetd.nix
     ../../common/optional/hyprland.nix
     #../../common/optional/librewolf.nix
     ../../common/optional/networkmanager.nix
@@ -68,10 +69,7 @@
   services = {
     openssh.enable = true;
     tailscale.enable = true;
-    xserver = {
-      enable = true;
-      displayManager.gdm.enable = true;
-      # PROVISIONAL
+    #displayManager.gdm.enable = true;
     };
   };
 
