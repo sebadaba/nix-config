@@ -1,20 +1,18 @@
 {
   config,
-  lib,
   pkgs,
-  inputs,
-  scheme,
   ...
-}: {
+}:
+{
   config = {
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi;
       theme = "${config.xdg.configHome}/rofi/archcraft-openbox-default/launcher.rasi";
     };
     xdg.configFile = {
       "rofi/archcraft-openbox-default/launcher.rasi".source = pkgs.fetchurl {
-        url = https://raw.githubusercontent.com/archcraft-os/archcraft-openbox/refs/heads/main/files/themes/default/rofi/launcher.rasi;
+        url = "https://raw.githubusercontent.com/archcraft-os/archcraft-openbox/refs/heads/main/files/themes/default/rofi/launcher.rasi";
         hash = "sha256-dK/b/4QMtS+cCm3Ny2I7DcYcyupbj2NidCom2XN1xkQ=";
       };
       "rofi/archcraft-openbox-default/shared/colors.rasi".text = ''
