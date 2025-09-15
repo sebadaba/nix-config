@@ -17,7 +17,8 @@ in
       "wheel"
       "docker"
       "audio"
-    ] ++ lib.optionals config.networking.networkmanager.enable [ "networkmanager" ];
+    ]
+    ++ lib.optionals config.networking.networkmanager.enable [ "networkmanager" ];
     shell = pkgs.zsh; # default shell
   };
 
@@ -25,6 +26,11 @@ in
 
   # No matter what environment we are in we want these tools
   programs.zsh.enable = true;
+
+  programs.nh = {
+    enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     sops
     usbutils
