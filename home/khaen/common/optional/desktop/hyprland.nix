@@ -1,6 +1,12 @@
 {
+  config,
+  pkgs,
   ...
 }:
+let
+  screenshotsFolder = "/home/${config.hostSpec.primaryUsername}/Pictures/Screenshots";
+  hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -63,8 +69,10 @@
         "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-        # Screenshot
-        ", Print, exec, flameshot gui --raw | wl-copy"
+        # Screenshots
+        ", PRINT, exec, ${hyprshot} -m output --output-folder ${screenshotsFolder}" # Take screenshot of the whole screen
+        "ALT, PRINT, exec, ${hyprshot} -m window -m active --output-folder ${screenshotsFolder}" # Take screenshot of the active window
+        "SHIFT, PRINT, exec, ${hyprshot} -m region --output-folder ${screenshotsFolder}" # Take screenshot of a selected area
       ];
 
       # Binds that work when locked.
