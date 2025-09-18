@@ -250,10 +250,10 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1750206543,
-        "narHash": "sha256-CmdKg69/Ee7PPa7mxlxaGEykqcgHJEq3xZgG6Dtxqjc=",
+        "lastModified": 1757965810,
+        "narHash": "sha256-jLqqZjKwJuKm3Kds7rq3Kkb6qbbzZ0Ixa7FlN2Xj34I=",
         "ref": "main",
-        "rev": "e62b02eea72ccc6418217710696dd9c3f15773ea",
+        "rev": "dc5a34deaecf9d61a6482674047cb39622a35014",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/sebadaba/nix-secrets.git"
@@ -406,11 +406,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1757360005,
-        "narHash": "sha256-VwzdFEQCpYMU9mc7BSQGQe5wA1MuTYPJnRc9TQCTMcM=",
+        "lastModified": 1757956156,
+        "narHash": "sha256-f0W7qbsCqpi6swQ5w8H+0YrAbNwsHgCFDkNRMTJjqrE=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "834a743c11d66ea18e8c54872fbcc72ce48bc57f",
+        "rev": "0ce0103b498bb22f899ed8862d8d7f9503ed9cdb",
         "type": "github"
       },
       "original": {
