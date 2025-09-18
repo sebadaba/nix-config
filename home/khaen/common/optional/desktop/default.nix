@@ -14,7 +14,6 @@
     ./rofi.nix
     ./screenshots.nix
     ./swaync.nix
-    ./swayosd.nix
     ./theming.nix
     ./waybar.nix
     ./wlogout.nix

@@ -26,8 +26,8 @@
       with config.lib.niri.actions;
       let
         mod = "Mod";
-        set-volume = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@";
-        brillo = spawn "${pkgs.brillo}/bin/brillo" "-q" "-u" "300000";
+        set-volume = spawn "swayosd-client" "--max-volume 120";
+        set-brightness = spawn "swayosd-client" "--brightness";
         playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
       in
       {
@@ -38,18 +38,18 @@
           spawn "sh" "-c"
             "loginctl lock-session && sleep 5 && niri msg action power-off-monitors";
 
-        XF86AudioRaiseVolume.action = set-volume "5%+";
-        XF86AudioLowerVolume.action = set-volume "5%-";
-        XF86AudioMute.action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-        XF86AudioMicMute.action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+        XF86AudioRaiseVolume.action = set-volume "--output-volume" "6";
+        XF86AudioLowerVolume.action = set-volume "--output-volume" "-6";
+        XF86AudioMute.action = set-volume "--output-volume" "mute-toggle";
+        XF86AudioMicMute.action = set-volume "--input-volume" "mute-toggle";
 
         XF86AudioPlay.action = playerctl "play-pause";
         XF86AudioStop.action = playerctl "pause";
         XF86AudioPrev.action = playerctl "previous";
         XF86AudioNext.action = playerctl "next";
 
-        XF86MonBrightnessUp.action = brillo "-A" "5";
-        XF86MonBrightnessDown.action = brillo "-U" "5";
+        XF86MonBrightnessUp.action = set-brightness "+5";
+        XF86MonBrightnessDown.action = set-brightness "-5";
 
         # // Open/close the Overview: a zoomed-out view of workspaces and windows.
         # // You can also move the mouse into the top-left hot corner,
@@ -261,12 +261,14 @@
         "${mod}+Shift+P".action = power-off-monitors;
       };
     spawn-at-startup = [
+      { command = [ "hyprlock --immediate-render" ]; }
       { command = [ "waybar" ]; }
       { command = [ "hyprpaper" ]; }
-      { command = [ "hyprlock --immediate-render" ]; }
       { command = [ "${lib.getExe pkgs.networkmanagerapplet}" ]; }
       { command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
     ];
     environment."DISPLAY" = ":0";
   };
+
+  services.swayosd.enable = true;
 }
