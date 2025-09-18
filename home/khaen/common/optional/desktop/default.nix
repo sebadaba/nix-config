@@ -10,6 +10,7 @@
     ./hypridle.nix
     ./hyprland.nix
     ./hyprlock.nix
+    ./niri.nix
     ./rofi.nix
     ./screenshots.nix
     ./swaync.nix
