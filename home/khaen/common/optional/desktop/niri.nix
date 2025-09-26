@@ -271,4 +271,5 @@
   };
 
   services.swayosd.enable = true;
+  home.packages = with pkgs; [ nautilus ];
 }

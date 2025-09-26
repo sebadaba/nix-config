@@ -11,4 +11,6 @@
     enable = if config.hostSpec.wlCompositor == "Niri" then true else false;
     package = pkgs.niri-unstable;
   };
+  services.dbus.packages = [ pkgs.nautilus ];
+  services.gvfs.enable = true;
 }
