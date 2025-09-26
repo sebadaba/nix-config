@@ -260,13 +260,32 @@
         # // moving the mouse or pressing any other key.
         "${mod}+Shift+P".action = power-off-monitors;
       };
-    spawn-at-startup = [
-      { command = [ "hyprlock --immediate-render" ]; }
-      { command = [ "waybar" ]; }
-      { command = [ "hyprpaper" ]; }
-      { command = [ "${lib.getExe pkgs.networkmanagerapplet}" ]; }
-      { command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
-    ];
+    spawn-at-startup =
+      let
+        # I'd like that Firefox's bitwarden window to enter the master pass appeared like a modal
+        # instead of a full window. Since Firefox (in this case Librewolf) doesn't set the title of
+        # extension windows at creation, this script is needed.
+        librewolf-bitwarden-watcher = pkgs.writeShellScriptBin "librewolf-bitwarden-watcher" ''
+          while read event; do
+             if [[ `jq --argjson e "$event" -nr '$e.title'` == 'Extension: (Bitwarden Password Manager) - Bitwarden — LibreWolf' ]]; then
+                niri msg action move-window-to-floating --window-id $(jq --argjson e "$event" -nr '$e.id')
+             fi
+          done < <(niri msg -j event-stream |  jq --unbuffered -c '.WindowOpenedOrChanged | select(. != null) | .window | select(.app_id == "librewolf")')
+        '';
+      in
+      [
+        {
+          command = [
+            "hyprlock"
+            "--immediate-render"
+          ];
+        }
+        { command = [ "waybar" ]; }
+        #{ command = [ "hyprpaper" ]; }
+        { command = [ "${lib.getExe pkgs.networkmanagerapplet}" ]; }
+        { command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
+        { command = [ "${lib.getExe librewolf-bitwarden-watcher}" ]; }
+      ];
     environment."DISPLAY" = ":0";
   };
 
