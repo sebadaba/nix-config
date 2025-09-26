@@ -26,7 +26,7 @@
       with config.lib.niri.actions;
       let
         mod = "Mod";
-        set-volume = spawn "swayosd-client" "--max-volume 120";
+        set-volume = spawn "swayosd-client" "--max-volume" "120";
         set-brightness = spawn "swayosd-client" "--brightness";
         playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
       in
@@ -270,6 +270,8 @@
     environment."DISPLAY" = ":0";
   };
 
-  services.swayosd.enable = true;
+  services = {
+    swayosd.enable = true;
+  };
   home.packages = with pkgs; [ nautilus ];
 }
