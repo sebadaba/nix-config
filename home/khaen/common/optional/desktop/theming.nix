@@ -13,7 +13,6 @@
     # })
 
     papirus-icon-theme
-    xfce.thunar
   ];
   stylix = {
     polarity = "dark";
