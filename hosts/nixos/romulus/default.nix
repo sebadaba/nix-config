@@ -33,6 +33,7 @@
     ../../common/optional/greetd.nix
     ../../common/optional/hyprland.nix
     #../../common/optional/librewolf.nix
+    ../../common/optional/librenms.nix
     ../../common/optional/networkmanager.nix
     ../../common/optional/niri.nix
     #../../common/optional/pgadmin.nix
@@ -72,7 +73,7 @@
     openssh.enable = true;
     tailscale.enable = true;
     #displayManager.gdm.enable = true;
-    };
+    librenms.enable = true;
   };
 
   virtualisation.docker.storageDriver = "btrfs";
