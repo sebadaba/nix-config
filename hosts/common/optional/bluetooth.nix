@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   ...
 }:
 {
@@ -11,5 +10,5 @@
 
     };
   };
-  services.blueman.enable = lib.mkIf config.programs.hyprland.enable true;
+  services.blueman.enable = if config.hostSpec.wlCompositor != "None" then true else false;
 }

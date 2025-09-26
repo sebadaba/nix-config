@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.hyprland = {
-    enable = true;
+    enable = if config.hostSpec.wlCompositor == "Hyprland" then true else false;
     withUWSM = true;
   };
   programs.dconf.enable = true;

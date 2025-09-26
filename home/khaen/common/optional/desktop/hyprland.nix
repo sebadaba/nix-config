@@ -9,7 +9,7 @@ let
 in
 {
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = if config.hostSpec.wlCompositor == "Hyprland" then true else false;
     #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     settings = {
       # Global

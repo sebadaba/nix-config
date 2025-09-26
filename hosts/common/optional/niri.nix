@@ -1,9 +1,14 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   imports = [ inputs.niri.nixosModules.niri ];
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri = {
-    enable = true;
+    enable = if config.hostSpec.wlCompositor == "Niri" then true else false;
     package = pkgs.niri-unstable;
   };
 }

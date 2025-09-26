@@ -42,6 +42,7 @@
   hostSpec = {
     hostname = "romulus";
     scheme = config.lib.base16.mkSchemeAttrs "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
+    wlCompositor = "Niri";
   };
 
   boot = {
