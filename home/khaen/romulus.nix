@@ -16,6 +16,7 @@
     common/optional/desktop/terminal.nix
     common/optional/game-streaming.nix
     common/optional/librewolf.nix
+    common/optional/shell.nix
     common/optional/thunderbird.nix
     #common/optional/desktop/unredis/packettracer.nix
   ];
