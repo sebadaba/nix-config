@@ -18,7 +18,7 @@
 
   services.librenms = {
     database = {
-      createLocally = true;
+      createLocally = true; # sets services.mysql.enable to true!
       passwordFile = config.sops.secrets."librenms-password-file".path;
     };
   };
