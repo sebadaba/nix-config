@@ -15,8 +15,10 @@
       enableZshIntegration = true;
       nix-direnv.enable = true;
     };
+    gitui.enable = true;
   };
   home.packages = with pkgs; [
     devenv
+    postman
   ];
 }
