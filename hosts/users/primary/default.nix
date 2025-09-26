@@ -37,6 +37,8 @@ in
     pciutils
     zip
     unzip
+    rar
+    unrar
   ];
 
   home-manager = {
