@@ -43,12 +43,11 @@
     loader = {
       systemd-boot = {
         enable = true;
-        xbootldrMountPoint = "/boot";
         consoleMode = "2";
       };
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/efi";
+        #efiSysMountPoint = "/efi";
       };
     };
   };

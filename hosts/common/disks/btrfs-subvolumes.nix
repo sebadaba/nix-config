@@ -1,7 +1,7 @@
 # https://github.com/nix-community/disko/blob/2bf3421f7fed5c84d9392b62dcb9d76ef09796a7/example/btrfs-subvolumes.nix
 {
   disk ? "/dev/vda",
-  swapSize,
+  swapSize ? "1G",
   ...
 }:
 {
@@ -9,14 +9,15 @@
     disk = {
       main = {
         type = "disk";
-        device = disk;
+        device = "/dev/disk/by-diskseq/1";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
               priority = 1;
               name = "ESP";
-              size = "512M";
+              start = "1M";
+              end = "128M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -42,6 +43,8 @@
                     mountOptions = [ "compress=zstd" ];
                     mountpoint = "/home";
                   };
+                  # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
+                  "/home/user" = { };
                   # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
                     mountOptions = [
@@ -50,14 +53,28 @@
                     ];
                     mountpoint = "/nix";
                   };
+                  # This subvolume will be created but not mounted
+                  "/test" = { };
+                  # Subvolume for the swapfile
+                  "/swap" = {
+                    mountpoint = "/.swapvol";
+                    swap = {
+                      swapfile.size = "20M";
+                      swapfile2.size = "20M";
+                      swapfile2.path = "rel-path";
+                    };
+                  };
                 };
-              };
-            };
-            encryptedSwap = {
-              size = swapSize;
-              content = {
-                type = "swap";
-                randomEncryption = true;
+
+                mountpoint = "/partition-root";
+                swap = {
+                  swapfile = {
+                    size = "20M";
+                  };
+                  swapfile1 = {
+                    size = "20M";
+                  };
+                };
               };
             };
           };
