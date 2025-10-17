@@ -13,6 +13,7 @@
     ./niri.nix
     ./rofi.nix
     ./swaync.nix
+    ./terminal.nix
     ./theming.nix
     ./waybar.nix
     ./wlogout.nix
