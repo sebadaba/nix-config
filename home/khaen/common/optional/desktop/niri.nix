@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 
@@ -281,7 +282,13 @@
           ];
         }
         { command = [ "waybar" ]; }
-        #{ command = [ "hyprpaper" ]; }
+        {
+          command = [
+            "swww"
+            "img"
+            "${builtins.toString inputs.wallpapers}/sunrise-mountain-416BF.png"
+          ];
+        }
         { command = [ "${lib.getExe pkgs.networkmanagerapplet}" ]; }
         { command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
         { command = [ "${lib.getExe librewolf-bitwarden-watcher}" ]; }
@@ -291,6 +298,7 @@
 
   services = {
     swayosd.enable = true;
+    swww.enable = true;
   };
   home.packages = with pkgs; [ nautilus ];
 }
