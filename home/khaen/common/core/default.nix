@@ -30,7 +30,7 @@
     obs-studio
     anki
     vlc
-    bitwarden
+    bitwarden-desktop
     blender
     libreoffice
     paperwork

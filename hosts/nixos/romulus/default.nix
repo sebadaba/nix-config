@@ -37,6 +37,7 @@
     ../../common/optional/networkmanager.nix
     ../../common/optional/niri.nix
     #../../common/optional/pgadmin.nix
+    ../../common/optional/plymouth.nix
     ../../common/optional/syncthing.nix
     ../../common/optional/trackpoint.nix
   ];

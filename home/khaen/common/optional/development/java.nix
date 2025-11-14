@@ -7,7 +7,7 @@
     enable = true;
     package = pkgs.jdk21.override {
       enableJavaFX = true;
-      openjfx_jdk = pkgs.javaPackages.openjfx21;
+      openjfx_jdk = pkgs.javaPackages.openjfx23;
     };
   };
 
