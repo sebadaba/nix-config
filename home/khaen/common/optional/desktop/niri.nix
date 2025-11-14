@@ -17,6 +17,9 @@
       };
       keyboard.xkb.layout = "latam";
     };
+
+    outputs."HDMI-A-1".scale = if config.hostSpec.hostname == "nostromo" then 1.25 else 1;
+
     window-rules = [
       {
         matches = [ { app-id = "authentication-agent-1|pwvucontrol"; } ];
@@ -32,6 +35,7 @@
         playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
       in
       {
+
         "${mod}+Shift+Slash".action = show-hotkey-overlay;
         "${mod}+Space".action = spawn "anyrun";
         "${mod}+T".action = spawn "alacritty";
@@ -228,11 +232,11 @@
         # // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
         # // set-column-width "100" will make the column occupy 200 physical screen pixels.
         "${mod}+Minus".action = set-column-width "-10%";
-        "${mod}+Equal".action = set-column-width "+10%";
+        "${mod}+Plus".action = set-column-width "+10%";
 
         # // Finer height adjustments when in column with other windows.
         "${mod}+Shift+Minus".action = set-window-height "-10%";
-        "${mod}+Shift+Equal".action = set-window-height "+10%";
+        "${mod}+Shift+Plus".action = set-window-height "+10%";
 
         # // Move the focused window between the floating and the tiling layout.
         "${mod}+V".action = toggle-window-floating;
