@@ -33,10 +33,12 @@
     ../../common/optional/librewolf.nix
     ../../common/optional/reboot2windows.nix
     ../../common/optional/syncthing.nix
+    ../../common/optional/niri.nix
   ];
   hostSpec = {
     hostname = "nostromo";
     scheme = config.lib.base16.mkSchemeAttrs "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
+    wlCompositor = "Niri";
   };
 
   boot = {
