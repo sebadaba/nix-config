@@ -5,9 +5,9 @@
 {
   programs.java = {
     enable = true;
-    package = pkgs.jdk21.override {
+    package = pkgs.jdk25.override {
       enableJavaFX = true;
-      openjfx_jdk = pkgs.javaPackages.openjfx23;
+      openjfx_jdk = pkgs.javaPackages.openjfx25;
     };
   };
 
