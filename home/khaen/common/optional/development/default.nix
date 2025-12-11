@@ -5,7 +5,7 @@
 {
   imports = [
     ./c.nix
-    ./java.nix
+    #./java.nix
     #./python.nix
     ./vscode.nix
   ];
