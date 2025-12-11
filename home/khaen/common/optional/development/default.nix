@@ -8,6 +8,7 @@
     #./java.nix
     #./python.nix
     ./vscode.nix
+    ./zed.nix
   ];
   programs = {
     direnv = {
