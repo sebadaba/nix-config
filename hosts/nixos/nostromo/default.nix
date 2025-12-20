@@ -45,12 +45,12 @@
     loader = {
       systemd-boot = {
         enable = true;
-        xbootldrMountPoint = "/boot";
-        consoleMode = "2";
+        #xbootldrMountPoint = "/boot";
+        #consoleMode = "2";
       };
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/efi";
+        #efiSysMountPoint = "/efi";
       };
     };
   };
@@ -65,7 +65,14 @@
   system.stateVersion = "24.11";
 
   services = {
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+    };
     tailscale.enable = true;
     actual = {
       enable = true;
