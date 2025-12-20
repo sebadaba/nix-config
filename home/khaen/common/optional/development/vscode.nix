@@ -5,6 +5,16 @@
   ...
 }:
 let
+  tex = (
+    pkgs.texlive.combine {
+      inherit (pkgs.texlive)
+        scheme-medium
+        titlesec
+        enumitem
+        fontawesome5
+        ;
+    }
+  );
   profiles = {
     Base = {
       extensions = with pkgs.vscode-extensions; [
@@ -90,7 +100,7 @@ in
     nixfmt-rfc-style # Nix formatter
     nixd # Nix language server
     sublime-merge
-    texliveMedium
+    tex
     tex-fmt
   ];
   stylix.targets.vscode.profileNames = builtins.attrNames profiles;
