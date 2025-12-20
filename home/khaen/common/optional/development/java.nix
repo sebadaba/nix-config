@@ -12,7 +12,7 @@
   };
 
   home.packages = with pkgs; [
-    scenebuilder # Gluon Scenebuilder
+    #scenebuilder # Gluon Scenebuilder
     maven
   ];
   ## Drag and drop issue for Scenebuilder on Hyprland fix

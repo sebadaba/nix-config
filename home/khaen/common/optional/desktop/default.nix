@@ -19,7 +19,7 @@
     ./wlogout.nix
   ];
   home.packages = with pkgs; [
-    hyprpaper
+    #hyprpaper
     wl-clipboard
     qimgv
     brightnessctl
