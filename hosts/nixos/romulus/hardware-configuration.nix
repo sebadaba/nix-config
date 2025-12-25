@@ -58,4 +58,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   #hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   #networking.networkmanager.enable = true;
+  hardware.rtl-sdr.enable = true;
 }
