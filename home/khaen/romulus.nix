@@ -18,5 +18,6 @@
     common/optional/shell.nix
     common/optional/thunderbird.nix
     #common/optional/desktop/unredis/packettracer.nix
+    common/optional/desktop/unredis/renoise.nix
   ];
 }

@@ -32,8 +32,8 @@
     ../../common/optional/fprintd.nix
     ../../common/optional/greetd.nix
     ../../common/optional/hyprland.nix
-    #../../common/optional/librewolf.nix
     ../../common/optional/librenms.nix
+    ../../common/optional/virtualization.nix
     ../../common/optional/networkmanager.nix
     ../../common/optional/niri.nix
     #../../common/optional/pgadmin.nix

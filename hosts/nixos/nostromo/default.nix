@@ -30,7 +30,6 @@
     ../../common/optional/audio.nix
     ../../common/optional/greetd.nix
     ../../common/optional/hyprland.nix
-    ../../common/optional/librewolf.nix
     ../../common/optional/reboot2windows.nix
     ../../common/optional/syncthing.nix
     ../../common/optional/niri.nix
