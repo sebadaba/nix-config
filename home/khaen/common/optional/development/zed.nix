@@ -14,6 +14,9 @@
       nixfmt
     ];
     userSettings = {
+      features = {
+        edit_prediction_provider = "copilot";
+      };
       languages = {
         Nix = {
           language_servers = [ "nixd" ];
