@@ -1,17 +1,8 @@
 {
-  inputs,
-  config,
-  ...
-}:
-
-let
-  username = config.constants.primary-user.name;
-in
-
-{
-  flake.modules.nixos."${username}" =
+  flake.modules.nixos.khaen =
     {
       pkgs,
+      inputs,
       ...
     }:
     {
@@ -19,13 +10,14 @@ in
         # ...
       ];
 
-      home-manager.users."${username}" = {
+      home-manager.users.khaen = {
         imports = [
-          inputs.self.modules.homeManager."${username}"
+          inputs.self.modules.homeManager.khaen
+
         ];
       };
 
-      users.users."${username}" = {
+      users.users.khaen = {
         isNormalUser = true;
         initialPassword = "changeme";
         shell = pkgs.zsh;
@@ -33,13 +25,17 @@ in
       programs.zsh.enable = true;
     };
 
-  flake.modules.homeManager."${username}" =
-    { pkgs, ... }:
+  flake.modules.homeManager.khaen =
+    {
+      pkgs,
+      inputs,
+      ...
+    }:
     {
       imports = with inputs.self.modules.homeManager; [
         #...
       ];
-      home.username = "${username}";
+      home.username = "khaen";
       home.packages = with pkgs; [
         #...
       ];
