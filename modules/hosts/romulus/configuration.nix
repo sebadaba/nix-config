@@ -4,10 +4,13 @@
 }:
 {
   flake.modules.nixos.romulus = {
-    imports = with inputs.self.modules.nixos; [
-      audio
-      #...
-    ];
+    imports =
+      with inputs.self.modules.nixos;
+      [
+        plymouth
+        #...
+      ]
+      ++ [ inputs.self.modules.generic.constants ];
 
     services = {
       openssh.enable = true;
