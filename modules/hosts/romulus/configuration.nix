@@ -7,6 +7,7 @@
     imports =
       with inputs.self.modules.nixos;
       [
+        audio
         plymouth
         #...
       ]
