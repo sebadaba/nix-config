@@ -1,7 +1,4 @@
 {
-  ...
-}:
-{
   flake.modules.nixos.romulus = {
     boot = {
       loader = {
