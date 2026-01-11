@@ -22,7 +22,7 @@
         "sd_mod"
       ];
 
-      boot.kernelModules = [
+      kernelModules = [
         "kvm-amd"
         # get wifi drivers to work for Realtek Wifi RTL8852CE (problems persist but better than nothing I guess)
         "rtw89_8852ce"
