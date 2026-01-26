@@ -11,6 +11,7 @@
         [
           audio
           plymouth
+          desktop-env
           #...
         ]
         ++ [ inputs.self.modules.generic.constants ];
