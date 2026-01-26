@@ -1,8 +1,8 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.khaen =
     {
       pkgs,
-      inputs,
       ...
     }:
     {
@@ -21,6 +21,7 @@
         isNormalUser = true;
         initialPassword = "changeme";
         shell = pkgs.zsh;
+        extraGroups = [ "wheel" ];
       };
       programs.zsh.enable = true;
     };
@@ -28,7 +29,6 @@
   flake.modules.homeManager.khaen =
     {
       pkgs,
-      inputs,
       ...
     }:
     {
