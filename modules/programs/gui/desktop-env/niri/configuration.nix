@@ -277,8 +277,8 @@
             # // ${mod}+Space       { switch-layout "next"; }
             # // ${mod}+Shift+Space { switch-layout "prev"; }
 
-            #"Print".action = screenshot;
-            #"Alt+Print".action = screenshot-window;
+            "Print".action.screenshot = [ ];
+            "Alt+Print".action.screenshot-window = [ ];
 
             # // The quit action will show a confirmation dialog to avoid accidental exits.
             "${mod}+Shift+E".action = quit;
