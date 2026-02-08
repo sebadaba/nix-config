@@ -9,6 +9,7 @@
       niri
       noctalia
       vicinae
+      alacritty
       multimedia
     ];
   };
