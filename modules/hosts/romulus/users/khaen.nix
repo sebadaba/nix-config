@@ -19,7 +19,9 @@
         home.packages = with pkgs; [
           satdump
           sdrpp
+          moonlight-qt
         ];
+
         home.stateVersion = "24.11";
       };
     };

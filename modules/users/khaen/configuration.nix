@@ -13,7 +13,6 @@
       home-manager.users.khaen = {
         imports = [
           inputs.self.modules.homeManager.khaen
-
         ];
       };
 
