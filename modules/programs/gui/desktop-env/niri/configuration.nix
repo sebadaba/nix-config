@@ -47,6 +47,14 @@
             set-volume = spawn "swayosd-client" "--max-volume" "120";
             set-brightness = spawn "swayosd-client" "--brightness";
             playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
+            noctalia =
+              cmd:
+              [
+                "noctalia-shell"
+                "ipc"
+                "call"
+              ]
+              ++ (pkgs.lib.splitString " " cmd);
           in
           {
 
@@ -57,18 +65,18 @@
               spawn "sh" "-c"
                 "loginctl lock-session && sleep 5 && niri msg action power-off-monitors";
 
-            XF86AudioRaiseVolume.action = set-volume "--output-volume" "6";
-            XF86AudioLowerVolume.action = set-volume "--output-volume" "-6";
-            XF86AudioMute.action = set-volume "--output-volume" "mute-toggle";
-            XF86AudioMicMute.action = set-volume "--input-volume" "mute-toggle";
+            XF86AudioRaiseVolume.action.spawn = noctalia "volume increase";
+            XF86AudioLowerVolume.action.spawn = noctalia "volume decrease";
+            XF86AudioMute.action.spawn = noctalia "volume muteOutput";
+            XF86AudioMicMute.action.spawn = noctalia "volume muteInput";
 
-            XF86AudioPlay.action = playerctl "play-pause";
-            XF86AudioStop.action = playerctl "pause";
-            XF86AudioPrev.action = playerctl "previous";
-            XF86AudioNext.action = playerctl "next";
+            XF86AudioPlay.action.spawn = noctalia "media playPause";
+            XF86AudioStop.action.spawn = noctalia "media pause";
+            XF86AudioPrev.action.spawn = noctalia "media previous";
+            XF86AudioNext.action.spawn = noctalia "media next";
 
-            XF86MonBrightnessUp.action = set-brightness "+5";
-            XF86MonBrightnessDown.action = set-brightness "-5";
+            XF86MonBrightnessUp.action.spawn = noctalia "brightness increase";
+            XF86MonBrightnessDown.action.spawn = noctalia "brightness decrease";
 
             # // Open/close the Overview: a zoomed-out view of workspaces and windows.
             # // You can also move the mouse into the top-left hot corner,
@@ -293,31 +301,13 @@
             '';
           in
           [
-            {
-              command = [
-                "hyprlock"
-                "--immediate-render"
-              ];
-            }
-            { command = [ "waybar" ]; }
-            {
-              command = [
-                "swww"
-                "img"
-                "${builtins.toString inputs.wallpapers}/sunrise-mountain-416BF.png"
-              ];
-            }
-            #{ command = [ "${lib.getExe pkgs.networkmanagerapplet}" ]; }
-            #{ command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
-            #{ command = [ "${lib.getExe librewolf-bitwarden-watcher}" ]; }
+            { command = [ "${pkgs.lib.getExe pkgs.xwayland-satellite}" ]; }
           ];
+
         environment."DISPLAY" = ":0";
       };
 
-      services = {
-        swayosd.enable = true;
-        swww.enable = true;
-      };
+
       home.packages = with pkgs; [ nautilus ];
     };
 }

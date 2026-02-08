@@ -17,6 +17,8 @@
         ++ [ inputs.self.modules.generic.constants ];
 
       services = {
+        tuned.enable = true;
+        upower.enable = true;
         openssh.enable = true;
         tailscale.enable = true;
       };
