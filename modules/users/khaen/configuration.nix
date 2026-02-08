@@ -33,6 +33,7 @@
     }:
     {
       imports = with inputs.self.modules.homeManager; [
+        zed
         shell
         development
         #...
