@@ -33,6 +33,8 @@
     }:
     {
       imports = with inputs.self.modules.homeManager; [
+        shell
+        development
         #...
       ];
       home.username = "khaen";
