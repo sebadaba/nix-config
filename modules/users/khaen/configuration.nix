@@ -34,6 +34,7 @@
     {
       imports = with inputs.self.modules.homeManager; [
         zed
+        zen
         shell
         development
         #...
