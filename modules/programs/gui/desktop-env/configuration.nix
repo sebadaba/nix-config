@@ -8,6 +8,7 @@
       greetd
       niri
       noctalia
+      vicinae
       multimedia
     ];
   };

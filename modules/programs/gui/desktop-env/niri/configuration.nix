@@ -59,7 +59,7 @@
           {
 
             "${mod}+Shift+Slash".action = show-hotkey-overlay;
-            "${mod}+Space".action = spawn "anyrun";
+            "${mod}+Space".action = spawn "vicinae" "toggle";
             "${mod}+T".action = spawn "alacritty";
             "Super+Alt+L".action =
               spawn "sh" "-c"
