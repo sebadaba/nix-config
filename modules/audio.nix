@@ -1,8 +1,10 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos.audio =
     { pkgs, ... }:
     {
+      home-manager.sharedModules = [ inputs.self.modules.homeManager.audio ];
+
       security.rtkit.enable = true;
       services = {
         pulseaudio.enable = false;
