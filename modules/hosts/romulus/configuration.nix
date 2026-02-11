@@ -17,6 +17,7 @@
       services = {
         tuned.enable = true;
         upower.enable = true;
+        thinkfan.enable = true;
         openssh.enable = true;
         tailscale.enable = true;
       };
@@ -37,11 +38,12 @@
       };
 
       hardware = {
-        graphics.enable = true;
         enableAllFirmware = true;
         #enableRedistributableFirmware = true;
         firmware = [ pkgs.linux-firmware ];
       };
+
+      hardware.facter.reportPath = ./facter.json;
 
       nixpkgs.config.allowUnfree = true;
 
