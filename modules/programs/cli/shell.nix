@@ -17,6 +17,7 @@
           enable = true;
           enableZshIntegration = true;
         };
+        nh.enable = true;
       };
       home.packages = with pkgs; [
         macchina
