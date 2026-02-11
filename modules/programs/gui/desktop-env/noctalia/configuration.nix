@@ -9,82 +9,76 @@
       ];
       # systemd service. starts after graphical-session target
       #services.noctalia-shell.enable = true;
+
+      services.gnome.evolution-data-server.enable = true; # Calendar support
     };
 
-  flake.modules.homeManager.noctalia = {
-    imports = [
-      inputs.noctalia.homeModules.default
-    ];
+  flake.modules.homeManager.noctalia =
+    { pkgs, ... }:
+    {
+      imports = [
+        inputs.noctalia.homeModules.default
+      ];
 
-    programs.noctalia-shell = {
-      enable = true;
-      systemd.enable = true; # target is set by wayland.systemd.target
-      settings = {
-        #templates.enableUserTemplates = true;
-
-        general = {
-          compactLockScreen = true;
-          showSessionButtonsOnLockScreen = false;
+      programs.noctalia-shell = {
+        enable = true;
+        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+          calendarSupport = true;
         };
+        systemd.enable = true; # target is set by wayland.systemd.target
+        settings = {
+          #templates.enableUserTemplates = true;
 
-        colorSchemes = {
-          darkMode = true;
-          predefinedScheme = "Ayu";
-          useWallpaperColors = true;
-          generationMethod = "rainbow";
-        };
+          general = {
+            compactLockScreen = true;
+            showSessionButtonsOnLockScreen = false;
+          };
 
-        wallpaper = {
-          enabled = true;
-          overviewEnabled = true;
-        };
+          location = {
+            name = "Santiago, Chile";
+          };
 
-        osd = {
-          enabled = true;
-          location = "bottom";
-          backgroundOpacity = 0.75;
-          enabledTypes = [
-            0 # Output volume
-            1 # Input volume
-            2 # Brightness
-            3 # Lock keys (caps, num...)
-          ];
-        };
+          colorSchemes = {
+            darkMode = true;
+            predefinedScheme = "Ayu";
+            useWallpaperColors = true;
+            generationMethod = "rainbow";
+          };
 
-        hooks = {
-          enabled = true;
-          startup = "noctalia-shell ipc call lockScreen lock";
-        };
-      };
-
-      plugins = {
-        sources = [
-          {
+          wallpaper = {
             enabled = true;
-            name = "Official Noctalia Plugins";
-            url = "https://github.com/noctalia-dev/noctalia-plugins";
-          }
-        ];
-        states = {
-          catwalk = {
+            overviewEnabled = true;
+          };
+
+          osd = {
             enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+            location = "bottom";
+            backgroundOpacity = 0.75;
+            enabledTypes = [
+              0 # Output volume
+              1 # Input volume
+              2 # Brightness
+              3 # Lock keys (caps, num...)
+            ];
+          };
+
+          hooks = {
+            enabled = true;
+            startup = "noctalia-shell ipc call lockScreen lock";
           };
         };
       };
-    };
 
-    programs.niri.settings = {
-      # Sets overview wallpaper to a blurred version of the desktop wallpaper.
-      # Requires "Wallpaper" > "Enable overview wallpaper" in noctalia config.
-      # (or programs.noctalia-shell.settings.wallpaper.overviewEnabled = true;)
-      layer-rules = [
-        {
-          matches = [ { namespace = "^noctalia-overview*"; } ];
-          place-within-backdrop = true;
-        }
-      ];
+      programs.niri.settings = {
+        # Sets overview wallpaper to a blurred version of the desktop wallpaper.
+        # Requires "Wallpaper" > "Enable overview wallpaper" in noctalia config.
+        # (or programs.noctalia-shell.settings.wallpaper.overviewEnabled = true;)
+        layer-rules = [
+          {
+            matches = [ { namespace = "^noctalia-overview*"; } ];
+            place-within-backdrop = true;
+          }
+        ];
+      };
     };
-
-  };
 }
