@@ -6,15 +6,13 @@
   flake.modules.nixos.romulus =
     { pkgs, ... }:
     {
-      imports =
-        with inputs.self.modules.nixos;
-        [
-          audio
-          plymouth
-          desktop-env
-          #...
-        ]
-        ++ [ inputs.self.modules.generic.constants ];
+      imports = with inputs.self.modules.nixos; [
+        basic-system
+        audio
+        plymouth
+        desktop-env
+        #...
+      ];
 
       services = {
         tuned.enable = true;
@@ -47,9 +45,5 @@
 
       nixpkgs.config.allowUnfree = true;
 
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
     };
 }
