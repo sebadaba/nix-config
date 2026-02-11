@@ -46,6 +46,17 @@
       inputs.niri-unstable.follows = "niri-unstable";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vicinae.url = "github:vicinaehq/vicinae";
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #
     # ========= Utilities =========
     #
