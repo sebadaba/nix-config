@@ -43,6 +43,7 @@
         #...
       ];
 
+      nix.settings.trusted-users = [ "khaen" ];
       nixpkgs.config.allowUnfree = true;
     };
 }

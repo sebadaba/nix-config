@@ -14,12 +14,18 @@
         ++ [ inputs.home-manager.nixosModules.home-manager ];
 
       home-manager.users.khaen = {
-        imports = with inputs.self.modules.homeManager; [ vesktop ];
+        imports = with inputs.self.modules.homeManager; [
+          vesktop
+          spicetify
+        ];
         # Specific config for khaen on romulus
         home.packages = with pkgs; [
           satdump
           sdrpp
           moonlight-qt
+          qbittorrent
+          chromium
+          sonobus
         ];
 
         home.stateVersion = "24.11";
