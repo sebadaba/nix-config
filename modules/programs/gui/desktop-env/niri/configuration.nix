@@ -313,9 +313,11 @@
             { command = [ "${pkgs.lib.getExe pkgs.xwayland-satellite}" ]; }
           ];
 
-        environment."DISPLAY" = ":0";
+        environment = {
+          "DISPLAY" = ":0";
+          "NIXOS_OZONE_WL" = "1";
+        };
       };
-
 
       home.packages = with pkgs; [ nautilus ];
     };
