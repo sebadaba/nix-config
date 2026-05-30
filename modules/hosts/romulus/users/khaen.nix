@@ -21,6 +21,7 @@
           development
           vesktop
           spicetify
+          network-toolkit
         ];
         # Specific config for khaen on romulus
         home.packages = with pkgs; [
