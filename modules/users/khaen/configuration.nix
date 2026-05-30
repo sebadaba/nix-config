@@ -23,6 +23,8 @@
         extraGroups = [ "wheel" ];
       };
       programs.zsh.enable = true;
+
+      nix.settings.trusted-users = [ "khaen" ];
     };
 
   flake.modules.homeManager.khaen =
