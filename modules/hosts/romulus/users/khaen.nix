@@ -10,6 +10,7 @@
         with inputs.self.modules.nixos;
         [
           khaen
+          android-studio
         ]
         ++ [ inputs.home-manager.nixosModules.home-manager ];
 
