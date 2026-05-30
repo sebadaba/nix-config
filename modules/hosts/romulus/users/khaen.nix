@@ -15,6 +15,9 @@
 
       home-manager.users.khaen = {
         imports = with inputs.self.modules.homeManager; [
+          zed
+          zen
+          development
           vesktop
           spicetify
         ];

@@ -32,15 +32,17 @@
     }:
     {
       imports = with inputs.self.modules.homeManager; [
-        zed
-        zen
         shell
-        development
         #...
       ];
       home.username = "khaen";
       home.packages = with pkgs; [
-        #...
+        usbutils
+        pciutils
+        zip
+        unzip
+        rar
+        #unrar
       ];
 
       nix.settings.trusted-users = [ "khaen" ];
