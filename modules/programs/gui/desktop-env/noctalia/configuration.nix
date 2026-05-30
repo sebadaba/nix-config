@@ -20,6 +20,10 @@
         inputs.noctalia.homeModules.default
       ];
 
+      home.packages = with pkgs; [
+        networkmanagerapplet # as a fallback
+      ];
+
       programs.noctalia-shell = {
         enable = true;
         package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {

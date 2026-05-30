@@ -21,6 +21,7 @@
           development
           vesktop
           spicetify
+          productivity
           network-toolkit
         ];
         # Specific config for khaen on romulus
