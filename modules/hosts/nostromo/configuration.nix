@@ -12,7 +12,7 @@
         [
           basic-system
           (btrfs-subvolumes {
-            primary-disk = "/dev/nvme0n1";
+            primary-disk = "/dev/nvme1n1";
             swapFileSize = "12G";
           })
           audio
