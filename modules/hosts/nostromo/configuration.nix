@@ -48,7 +48,7 @@
         firmware = [ pkgs.linux-firmware ];
       };
 
-      #hardware.facter.reportPath = ./facter.json;
+      hardware.facter.reportPath = ./facter.json;
 
       nixpkgs.config.allowUnfree = true;
 
