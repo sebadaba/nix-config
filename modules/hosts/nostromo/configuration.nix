@@ -54,5 +54,12 @@
 
       virtualisation.libvirtd.enable = true;
       programs.virt-manager.enable = true;
+
+      systemd.tmpfiles.rules = [ "d /home/khaen/Games 0755 khaen users - -" ];
+
+      disko.devices.disk.main.content.partitions.root.content.subvolumes."/games" = {
+        mountOptions = [ "compress=zstd" ];
+        mountpoint = "/home/khaen/Games";
+      };
     };
 }

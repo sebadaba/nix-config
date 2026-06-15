@@ -8,7 +8,7 @@
         };
         efi = {
           canTouchEfiVariables = true;
-          efiSysMountPoint = "/efi";
+          #efiSysMountPoint = "/efi";
         };
       };
 
