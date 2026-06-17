@@ -23,6 +23,7 @@
           spicetify
           productivity
           network-toolkit
+          syncthing
         ];
         # Specific config for khaen on romulus
         home.packages = with pkgs; [

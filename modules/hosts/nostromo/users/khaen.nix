@@ -24,6 +24,7 @@
           spicetify
           productivity
           network-toolkit
+          syncthing
         ];
 
         home.packages = with pkgs; [
