@@ -11,6 +11,7 @@
         [
           khaen
           android-studio
+          games
         ]
         ++ [ inputs.home-manager.nixosModules.home-manager ];
 
