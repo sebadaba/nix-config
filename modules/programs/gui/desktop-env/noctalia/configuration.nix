@@ -29,7 +29,6 @@
         package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
           calendarSupport = true;
         };
-        systemd.enable = true; # target is set by wayland.systemd.target
         settings = {
           #templates.enableUserTemplates = true;
 
@@ -74,6 +73,8 @@
       };
 
       programs.niri.settings = {
+        spawn-at-startup = [ { argv = [ "noctalia-shell" ]; } ]; # Niri automatic startup
+
         # Sets overview wallpaper to a blurred version of the desktop wallpaper.
         # Requires "Wallpaper" > "Enable overview wallpaper" in noctalia config.
         # (or programs.noctalia-shell.settings.wallpaper.overviewEnabled = true;)
