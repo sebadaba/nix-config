@@ -79,5 +79,7 @@
           enabled = true;
         }
       ];
+
+      xdg.mimeApps.defaultApplications."text/html" = "zen.desktop"; # Set as default browser
     };
 }
