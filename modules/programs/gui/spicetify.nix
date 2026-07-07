@@ -23,7 +23,7 @@
       # seems like spicetify installed this way doesn't work with
       # noctalia's dynamic theming.
       # see https://github.com/Gerg-L/spicetify-nix/issues/323
-      programs.noctalia-shell.settings.templates.activeTemplates = [
+      programs.noctalia.settings.templates.activeTemplates = [
         {
           id = "spicetify";
           enabled = true;

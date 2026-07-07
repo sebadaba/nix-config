@@ -8,7 +8,7 @@
         (inputs.self.modules.homeManager.noctalia { usingTailscale = config.services.tailscale.enable; })
       ];
       # systemd service. starts after graphical-session target
-      #services.noctalia-shell.enable = true;
+      #services.noctalia.enable = true;
 
       services.gnome.evolution-data-server.enable = true; # Calendar support
     };
@@ -24,11 +24,8 @@
         networkmanagerapplet # as a fallback
       ];
 
-      programs.noctalia-shell = {
+      programs.noctalia = {
         enable = true;
-        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-          calendarSupport = true;
-        };
         settings = {
           #templates.enableUserTemplates = true;
 
@@ -73,7 +70,7 @@
       };
 
       programs.niri.settings = {
-        spawn-at-startup = [ { argv = [ "noctalia-shell" ]; } ]; # Niri automatic startup
+        spawn-at-startup = [ { argv = [ "noctalia" ]; } ]; # Niri automatic startup
 
         # Sets overview wallpaper to a blurred version of the desktop wallpaper.
         # Requires "Wallpaper" > "Enable overview wallpaper" in noctalia config.

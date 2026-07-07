@@ -11,7 +11,7 @@
       settings.window.opacity = 0.80;
     };
 
-    programs.noctalia-shell.settings.templates.activeTemplates = [
+    programs.noctalia.settings.templates.activeTemplates = [
       {
         id = "alacritty";
         enabled = true;

@@ -47,8 +47,8 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:noctalia-dev/noctalia/cachix";
+      #inputs.nixpkgs.follows = "nixpkgs"; # disables binary cache
     };
 
     vicinae.url = "github:vicinaehq/vicinae";

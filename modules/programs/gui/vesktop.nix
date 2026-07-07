@@ -5,7 +5,7 @@
       vencord.settings.enabledThemes = [ "noctalia.theme.css" ];
     };
 
-    programs.noctalia-shell.settings.templates.activeTemplates = [
+    programs.noctalia.settings.templates.activeTemplates = [
       {
         id = "discord";
         enabled = true;

@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.noctalia = {
-    programs.noctalia-shell.settings.bar = {
+    programs.noctalia.settings.bar = {
       density = "compact";
       position = "top";
       widgets = {

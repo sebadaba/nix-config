@@ -38,7 +38,7 @@
         };
       };
 
-      programs.noctalia-shell.settings.templates.activeTemplates = [
+      programs.noctalia.settings.templates.activeTemplates = [
         {
           id = "zed";
           enabled = true;
