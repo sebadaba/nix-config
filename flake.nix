@@ -2,31 +2,10 @@
   description = "sebadaba's Nix config flake";
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-    in
-    {
-      nixosConfigurations = builtins.listToAttrs (
-        map (host: {
-          name = host;
-          value = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs outputs;
-            };
-            modules = [
-              ./hosts/nixos/${host}
-              inputs.base16.nixosModule
-            ];
-          };
-        }) (builtins.attrNames (builtins.readDir ./hosts/nixos))
-      );
-
-    };
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
+      # Imports all of the top-level modules (the files under `./modules`)
+      (inputs.import-tree ./modules);
 
   inputs = {
     #
@@ -41,6 +20,13 @@
     nixpkgs-stable.url = "nixpkgs/nixos-24.11";
     # Just for packages that need to be bleeding-edge always.
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    import-tree.url = "github:vic/import-tree";
 
     hardware.url = "github:nixos/nixos-hardware";
 
@@ -60,6 +46,19 @@
       inputs.niri-unstable.follows = "niri-unstable";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vicinae.url = "github:vicinaehq/vicinae";
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     #
     # ========= Utilities =========
     #
