@@ -53,15 +53,11 @@
           with config.lib.niri.actions;
           let
             mod = "Mod";
-            set-volume = spawn "swayosd-client" "--max-volume" "120";
-            set-brightness = spawn "swayosd-client" "--brightness";
-            playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
             noctalia =
               cmd:
               [
-                "noctalia-shell"
-                "ipc"
-                "call"
+                "noctalia"
+                "msg"
               ]
               ++ (pkgs.lib.splitString " " cmd);
           in
@@ -74,18 +70,18 @@
               spawn "sh" "-c"
                 "loginctl lock-session && sleep 5 && niri msg action power-off-monitors";
 
-            XF86AudioRaiseVolume.action.spawn = noctalia "volume increase";
-            XF86AudioLowerVolume.action.spawn = noctalia "volume decrease";
-            XF86AudioMute.action.spawn = noctalia "volume muteOutput";
-            XF86AudioMicMute.action.spawn = noctalia "volume muteInput";
+            XF86AudioRaiseVolume.action.spawn = noctalia "volume-up 5";
+            XF86AudioLowerVolume.action.spawn = noctalia "volume-down 5";
+            XF86AudioMute.action.spawn = noctalia "volume-mute";
+            XF86AudioMicMute.action.spawn = noctalia "mic-mute";
 
-            XF86AudioPlay.action.spawn = noctalia "media playPause";
+            XF86AudioPlay.action.spawn = noctalia "media toggle";
             XF86AudioStop.action.spawn = noctalia "media pause";
             XF86AudioPrev.action.spawn = noctalia "media previous";
             XF86AudioNext.action.spawn = noctalia "media next";
 
-            XF86MonBrightnessUp.action.spawn = noctalia "brightness increase";
-            XF86MonBrightnessDown.action.spawn = noctalia "brightness decrease";
+            XF86MonBrightnessUp.action.spawn = noctalia "brightness-up 5";
+            XF86MonBrightnessDown.action.spawn = noctalia "brightness-down 5";
 
             # // Open/close the Overview: a zoomed-out view of workspaces and windows.
             # // You can also move the mouse into the top-left hot corner,
