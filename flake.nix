@@ -51,6 +51,11 @@
       #inputs.nixpkgs.follows = "nixpkgs"; # disables binary cache
     };
 
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vicinae.url = "github:vicinaehq/vicinae";
 
     zen-browser = {
