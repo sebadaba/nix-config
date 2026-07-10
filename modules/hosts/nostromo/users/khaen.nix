@@ -31,6 +31,11 @@
           qbittorrent
           chromium
           sonobus
+          reaper
+          yabridge
+          yabridgectl
+          wineWow64Packages.waylandFull
+          xpipe
         ];
 
         home.stateVersion = "26.05";
