@@ -38,11 +38,6 @@
         };
       };
 
-      programs.noctalia.settings.templates.activeTemplates = [
-        {
-          id = "zed";
-          enabled = true;
-        }
-      ];
+      programs.noctalia.settings.theme.templates.community_ids = [ "zed" ];
     };
 }

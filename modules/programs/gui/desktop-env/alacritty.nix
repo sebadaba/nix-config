@@ -11,11 +11,6 @@
       settings.window.opacity = 0.80;
     };
 
-    programs.noctalia.settings.templates.activeTemplates = [
-      {
-        id = "alacritty";
-        enabled = true;
-      }
-    ];
+    programs.noctalia.settings.theme.templates.builtin_ids = [ "alacritty" ];
   };
 }

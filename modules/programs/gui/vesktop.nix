@@ -5,11 +5,6 @@
       vencord.settings.enabledThemes = [ "noctalia.theme.css" ];
     };
 
-    programs.noctalia.settings.templates.activeTemplates = [
-      {
-        id = "discord";
-        enabled = true;
-      }
-    ];
+    programs.noctalia.settings.theme.templates.community_ids = [ "discord" ];
   };
 }

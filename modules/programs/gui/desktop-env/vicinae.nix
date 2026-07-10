@@ -25,11 +25,6 @@
       extra-trusted-public-keys = [ "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc=" ];
     };
 
-    programs.noctalia.settings.templates.activeTemplates = [
-      {
-        id = "vicinae";
-        enabled = true;
-      }
-    ];
+    programs.noctalia.settings.theme.templates.community_ids = [ "vicinae" ];
   };
 }

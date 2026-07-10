@@ -73,12 +73,7 @@
             }
           )
         ];
-      programs.noctalia.settings.templates.activeTemplates = [
-        {
-          id = "zenBrowser";
-          enabled = true;
-        }
-      ];
+      programs.noctalia.settings.theme.templates.community_ids = [ "zen-browser" ];
 
       xdg.mimeApps.defaultApplications."text/html" = "zen.desktop"; # Set as default browser
     };
