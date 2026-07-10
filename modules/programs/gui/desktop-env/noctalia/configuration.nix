@@ -29,43 +29,25 @@
         settings = {
           #templates.enableUserTemplates = true;
 
-          general = {
-            compactLockScreen = true;
-            showSessionButtonsOnLockScreen = false;
+          theme = {
+            mode = "dark";
+            source = "wallpaper";
+            wallpaper_scheme = "m3-rainbow";
+            templates = {
+              enable_builtin_templates = true;
+              enable_community_templates = true;
+            };
           };
 
-          location = {
-            name = "Santiago, Chile";
-          };
-
-          colorSchemes = {
-            darkMode = true;
-            predefinedScheme = "Ayu";
-            useWallpaperColors = true;
-            generationMethod = "rainbow";
-          };
-
-          wallpaper = {
+          backdrop = {
             enabled = true;
-            overviewEnabled = true;
+            blur_intensity = 0.25;
+            tint_intensity = 0.1;
           };
 
-          osd = {
-            enabled = true;
-            location = "bottom";
-            backgroundOpacity = 0.75;
-            enabledTypes = [
-              0 # Output volume
-              1 # Input volume
-              2 # Brightness
-              3 # Lock keys (caps, num...)
-            ];
-          };
+          location.auto_locate = true;
 
-          hooks = {
-            enabled = true;
-            startup = "noctalia-shell ipc call lockScreen lock";
-          };
+          osd.position = "bottom_center";
         };
       };
 
@@ -77,10 +59,24 @@
         # (or programs.noctalia-shell.settings.wallpaper.overviewEnabled = true;)
         layer-rules = [
           {
-            matches = [ { namespace = "^noctalia-overview*"; } ];
+            matches = [ { namespace = "^noctalia-backdrop"; } ];
             place-within-backdrop = true;
           }
+          {
+            matches = [ { namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"; } ];
+            #background-effect = {
+            #  xray = false;
+            #};
+          }
         ];
+
+        window-rules = [
+          {
+            matches = [ { app-id = "dev.noctalia.Noctalia"; } ];
+            open-floating = true;
+          }
+        ];
+
       };
     };
 }
