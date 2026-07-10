@@ -16,6 +16,11 @@
       };
       services.dbus.packages = [ pkgs.nautilus ];
       services.gvfs.enable = true;
+
+      environment.variables = {
+        DISPLAY = ":0";
+        NIXOS_OZONE_WL = 1;
+      };
     };
 
   flake.modules.homeManager.niri =
