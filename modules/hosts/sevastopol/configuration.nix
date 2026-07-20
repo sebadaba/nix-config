@@ -49,14 +49,21 @@
 
       nixpkgs.config.allowUnfree = true;
 
-      boot.loader = {
-        systemd-boot = {
-          enable = true;
-          consoleMode = "2";
+      boot = {
+        loader = {
+          systemd-boot = {
+            enable = true;
+            consoleMode = "2";
+          };
+          efi = {
+            canTouchEfiVariables = true;
+            #efiSysMountPoint = "/boot/efi";
+          };
         };
-        efi = {
-          canTouchEfiVariables = true;
-          #efiSysMountPoint = "/boot/efi";
+        zswap = {
+          enable = true;
+          maxPoolPercent = 10;
+          compressor = "lz4"; # lz4: "Fastest compression, lowest latency"
         };
       };
 
