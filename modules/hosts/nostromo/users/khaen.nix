@@ -12,6 +12,7 @@
           khaen
           android-studio
           games
+          osu-lazer
         ]
         ++ [ inputs.home-manager.nixosModules.home-manager ];
 
