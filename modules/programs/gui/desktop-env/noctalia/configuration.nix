@@ -10,7 +10,6 @@
       # systemd service. starts after graphical-session target
       #services.noctalia.enable = true;
 
-      services.gnome.evolution-data-server.enable = true; # Calendar support
       environment.variables.QT_QPA_PLATFORMTHEME = "qt6ct";
     };
 
