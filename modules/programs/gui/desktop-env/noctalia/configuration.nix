@@ -29,16 +29,6 @@
         settings = {
           #templates.enableUserTemplates = true;
 
-          theme = {
-            mode = "dark";
-            source = "wallpaper";
-            wallpaper_scheme = "m3-rainbow";
-            templates = {
-              enable_builtin_templates = true;
-              enable_community_templates = true;
-            };
-          };
-
           backdrop = {
             enabled = true;
             blur_intensity = 0.25;
