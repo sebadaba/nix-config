@@ -1,6 +1,7 @@
 {
   flake.modules.homeManager.noctalia = {
-    programs.noctalia.settings.bar.main = {
+    programs.noctalia.settings = {
+      bar.main = {
       enabled = true;
 
       # Positioning
@@ -35,10 +36,13 @@
       font_weight = "regular"; # "regular" or "bold"
       font_family = ""; # empty -> global font
 
+
+
       # Widget sections
       start = [
         "battery"
         "sysmon"
+        "dotnetrob/cat:cat"
         "privacy"
         "workspaces"
       ];
@@ -58,6 +62,11 @@
         "clipboard"
         "control-center"
       ];
+    };
+      plugins = {
+        enabled = [ "dotnetrob/cat" ];
+        auto_update = true;
+      };
     };
   };
 }
