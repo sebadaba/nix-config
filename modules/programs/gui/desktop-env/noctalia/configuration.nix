@@ -48,6 +48,8 @@
           location.auto_locate = true;
 
           osd.position = "bottom_center";
+
+          hooks.started = "noctalia msg session lock";
         };
       };
 
