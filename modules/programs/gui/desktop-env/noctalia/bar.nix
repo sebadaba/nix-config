@@ -22,8 +22,9 @@
       radius = 0; # global corner radius fallback
       radius_top_left = 0;
       radius_top_right = 0;
-      radius_bottom_left = -12;
-      radius_bottom_right = -12;
+      radius_bottom_left = 12;
+      radius_bottom_right = 12;
+      concave_edge_corners = true;
       margin_ends = 0; # full length
       margin_edge = 0; # attached to edge
       margin_opposite_edge = 0; # windows stick to bar
