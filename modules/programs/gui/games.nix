@@ -22,14 +22,26 @@
               package = pkgs.protontricks;
             };
           };
-          gamescope.enable = true;
           gamemode.enable = true;
+          gamescope = {
+            enable = true;
+            args = [
+              "--output-width 3440"
+              "--nested-width 3440"
+              "--output-height 1440"
+              "--nested-height 1440"
+              "--fullscreen"
+              "--mangoapp"
+            ];
+          };
+
         };
       };
 
     homeManager.games =
       { pkgs, ... }:
       {
+        programs.mangohud.enable = true;
         home.packages = with pkgs; [
           # Minecraft Launcher
           prismlauncher
