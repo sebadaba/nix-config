@@ -5,6 +5,7 @@
       home.packages = with pkgs; [
         obsidian
         super-productivity
+        anki
       ];
     };
 }
