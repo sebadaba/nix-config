@@ -11,6 +11,11 @@
     default = { };
   };
 
+  options.flake.factory = lib.mkOption {
+    type = lib.types.attrsOf lib.types.unspecified;
+    default = { };
+  };
+
   config.flake.lib = {
 
     mkNixos = system: name: {

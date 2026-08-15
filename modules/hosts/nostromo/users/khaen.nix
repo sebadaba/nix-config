@@ -8,11 +8,13 @@
     {
       imports =
         with inputs.self.modules.nixos;
+        with inputs.self.factory;
         [
           khaen
           android-studio
           games
           osu-lazer
+          ( actual-budget "nostromo.tail004be.ts.net" )
         ]
         ++ [ inputs.home-manager.nixosModules.home-manager ];
 
