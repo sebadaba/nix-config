@@ -7,10 +7,20 @@
         extensions = [
           "nix"
           "dockerfile"
+          "latex"
         ];
         extraPackages = with pkgs; [
           nixd
           nixfmt
+          (pkgs.texlive.combine {
+            inherit (pkgs.texlive)
+              scheme-medium
+              titlesec
+              enumitem
+              fontawesome5
+              ;
+          })
+          texlab
         ];
         userSettings = {
           features = {
