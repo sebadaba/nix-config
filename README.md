@@ -8,7 +8,7 @@ Personal NixOS config built with [flake-parts](https://github.com/hercules-ci/fl
 |---|---|
 | `flake-parts/` | `dendritic.nix` enables the module schema, `lib.nix` provides `mkNixos`/`mkDarwin`/`mkHomeManager` helpers. |
 | `hosts/` | One directory per machine with `configuration.nix`, `flake-parts.nix`, hardware/boot/filesystem pieces, and host-scoped `users/`. |
-| `disks/` | Reusable disk layouts consumed by `disko` |
+| `disks/` | Reusable disk layouts consumed by `disko`. |
 | `programs/` | Application configs split by interface — `cli/` for terminal tools (shell, network, dev) and `gui/` for graphical apps + `desktop-env/` (compositor, greeter, bar, launcher). |
 | `users/` | Cross-host user baseline (e.g. `khaen/configuration.nix`); host-specific overlays live under `hosts/<host>/users/`. |
 
@@ -16,6 +16,6 @@ Personal NixOS config built with [flake-parts](https://github.com/hercules-ci/fl
 
 | Hostname | Description |
 | --- | --- |
-| nostromo | Desktop PC with an i7 12700k and a RX 6800xt |
-| romulus | Thinkpad E14 gen 6 with a Ryzen 5 7535U |
-| sevastopol | Lenovo laptop with an i5 1035G4 |
+| nostromo | Desktop PC with an i7 12700k and a RX 6800xt. |
+| romulus | Thinkpad E14 gen 6 with a Ryzen 5 7535U. |
+| sevastopol | Lenovo laptop with an i5 1035G4 that is being used as a server. |
