@@ -1,11 +1,11 @@
 {
   flake.modules.homeManager.coding-agent =
-    { pkgs, ... }:
+    { ... }:
     {
       programs = {
         opencode = {
           enable = true;
-          #enableMcpIntegration = true;
+          enableMcpIntegration = true;
           settings = {
             tools = {
               "markitdown_*" = false;
@@ -26,6 +26,11 @@
             #enabled = true;
             #command = "${pkgs.markitdown-mcp}/bin/markitdown-mcp";
             #};
+            context7 = {
+              enable = true;
+              url = "https://mcp.context7.com/mcp";
+              headers.CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
+            };
           };
         };
       };
