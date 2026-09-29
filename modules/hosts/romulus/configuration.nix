@@ -22,6 +22,24 @@
         tailscale.enable = true;
       };
 
+      # Send builds to nostromo when reachable; the local daemon is always
+      # kept available, so if nostromo is unreachable Nix falls back to
+      # building locally automatically.
+      nix = {
+        distributedBuilds = true;
+        buildMachines = [
+          {
+            hostName = "nostromo.tail004be.ts.net";
+            sshUser = "khaen";
+            sshKey = "/home/khaen/.ssh/id_ed25519";
+            system = "x86_64-linux";
+            maxJobs = 12;
+            speedFactor = 2;
+            protocol = "ssh-ng";
+          }
+        ];
+      };
+
       networking = {
         hostName = "romulus";
         networkmanager.enable = true;

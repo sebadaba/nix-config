@@ -35,6 +35,10 @@
 
       users.users.khaen = {
         extraGroups = [ "uinput" ];
+        openssh.authorizedKeys.keys = [
+          # khaen@romulus (for remote Nix builder)
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPpTR9Mon8wapYOEGOcqeCQ4GhMLifGCMZdy18EaeQ4b"
+        ];
       };
 
       networking = {
