@@ -17,7 +17,7 @@
     # This is a source for critical packages that need to be in a stable branch always.
     # This way nixpkgs can be set to the unstable branch to get a jump start
     # on deprecation changes without breaking critical components.
-    nixpkgs-stable.url = "nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-26.05";
     # Just for packages that need to be bleeding-edge always.
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
