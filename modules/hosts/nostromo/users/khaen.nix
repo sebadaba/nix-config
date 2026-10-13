@@ -8,10 +8,13 @@
     {
       imports =
         with inputs.self.modules.nixos;
+        with inputs.self.factory;
         [
           khaen
           android-studio
           games
+          osu-lazer
+          ( actual-budget "nostromo.tail004be.ts.net" )
         ]
         ++ [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -31,6 +34,11 @@
           qbittorrent
           chromium
           sonobus
+          reaper
+          yabridge
+          yabridgectl
+          wineWow64Packages.waylandFull
+          xpipe
         ];
 
         home.stateVersion = "26.05";

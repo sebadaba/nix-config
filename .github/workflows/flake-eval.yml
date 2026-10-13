@@ -1,0 +1,32 @@
+name: "Hosts Configuration Evaluation"
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  eval-hosts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          nix_conf: |
+            experimental-features = nix-command flakes
+
+      - name: Flake check
+        run: nix flake check
+
+      - name: Evaluate all hosts on flake
+        run: |
+          HOSTS=$(nix eval --json .#nixosConfigurations --apply 'builtins.attrNames' | jq -r '.[]')
+
+          for host in $HOSTS; do
+            echo "==> Evaluating host: $host"
+            nix eval .#nixosConfigurations."$host".config.system.build.toplevel.drvPath 2>&1 | \
+                          sed 's/.*warning: \(.*\)/::warning::\1/'
+          done

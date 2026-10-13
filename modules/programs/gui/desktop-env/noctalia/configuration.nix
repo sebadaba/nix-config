@@ -8,9 +8,9 @@
         (inputs.self.modules.homeManager.noctalia { usingTailscale = config.services.tailscale.enable; })
       ];
       # systemd service. starts after graphical-session target
-      #services.noctalia-shell.enable = true;
+      #services.noctalia.enable = true;
 
-      services.gnome.evolution-data-server.enable = true; # Calendar support
+      environment.variables.QT_QPA_PLATFORMTHEME = "qt6ct";
     };
 
   flake.modules.homeManager.noctalia =
@@ -24,65 +24,51 @@
         networkmanagerapplet # as a fallback
       ];
 
-      programs.noctalia-shell = {
+      programs.noctalia = {
         enable = true;
-        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-          calendarSupport = true;
-        };
-        systemd.enable = true; # target is set by wayland.systemd.target
         settings = {
           #templates.enableUserTemplates = true;
 
-          general = {
-            compactLockScreen = true;
-            showSessionButtonsOnLockScreen = false;
-          };
-
-          location = {
-            name = "Santiago, Chile";
-          };
-
-          colorSchemes = {
-            darkMode = true;
-            predefinedScheme = "Ayu";
-            useWallpaperColors = true;
-            generationMethod = "rainbow";
-          };
-
-          wallpaper = {
+          backdrop = {
             enabled = true;
-            overviewEnabled = true;
+            blur_intensity = 0.25;
+            tint_intensity = 0.1;
           };
 
-          osd = {
-            enabled = true;
-            location = "bottom";
-            backgroundOpacity = 0.75;
-            enabledTypes = [
-              0 # Output volume
-              1 # Input volume
-              2 # Brightness
-              3 # Lock keys (caps, num...)
-            ];
-          };
+          location.auto_locate = true;
 
-          hooks = {
-            enabled = true;
-            startup = "noctalia-shell ipc call lockScreen lock";
-          };
+          osd.position = "bottom_center";
+
+          hooks.started = "noctalia msg session lock";
         };
       };
 
       programs.niri.settings = {
+        spawn-at-startup = [ { argv = [ "noctalia" ]; } ]; # Niri automatic startup
+
         # Sets overview wallpaper to a blurred version of the desktop wallpaper.
         # Requires "Wallpaper" > "Enable overview wallpaper" in noctalia config.
         # (or programs.noctalia-shell.settings.wallpaper.overviewEnabled = true;)
         layer-rules = [
           {
-            matches = [ { namespace = "^noctalia-overview*"; } ];
+            matches = [ { namespace = "^noctalia-backdrop"; } ];
             place-within-backdrop = true;
           }
+          {
+            matches = [ { namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"; } ];
+            #background-effect = {
+            #  xray = false;
+            #};
+          }
         ];
+
+        window-rules = [
+          {
+            matches = [ { app-id = "dev.noctalia.Noctalia"; } ];
+            open-floating = true;
+          }
+        ];
+
       };
     };
 }

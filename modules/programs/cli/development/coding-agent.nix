@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.coding-agent =
-    { pkgs, ... }:
+    { ... }:
     {
       programs = {
         opencode = {
@@ -12,19 +12,24 @@
             };
           };
           agents = {
-            summarizer = ./agents/summarizer.md;
+            #summarizer = ./agents/summarizer.md;
           };
           skills = {
-            read-documents = ./skills/read-documents.md;
+            #read-documents = ./skills/read-documents.md;
           };
         };
 
         mcp = {
           enable = true;
           servers = {
-            markitdown = {
-              enabled = true;
-              command = "${pkgs.markitdown-mcp}/bin/markitdown-mcp";
+            # markitdown = {
+            #enabled = true;
+            #command = "${pkgs.markitdown-mcp}/bin/markitdown-mcp";
+            #};
+            context7 = {
+              enable = true;
+              url = "https://mcp.context7.com/mcp";
+              headers.CONTEXT7_API_KEY = "{env:CONTEXT7_API_KEY}";
             };
           };
         };

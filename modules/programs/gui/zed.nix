@@ -7,10 +7,20 @@
         extensions = [
           "nix"
           "dockerfile"
+          "latex"
         ];
         extraPackages = with pkgs; [
           nixd
           nixfmt
+          (pkgs.texlive.combine {
+            inherit (pkgs.texlive)
+              scheme-medium
+              titlesec
+              enumitem
+              fontawesome5
+              ;
+          })
+          texlab
         ];
         userSettings = {
           features = {
@@ -38,11 +48,6 @@
         };
       };
 
-      programs.noctalia-shell.settings.templates.activeTemplates = [
-        {
-          id = "zed";
-          enabled = true;
-        }
-      ];
+      programs.noctalia.settings.theme.templates.community_ids = [ "zed" ];
     };
 }
