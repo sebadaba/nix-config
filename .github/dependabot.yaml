@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "nix"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "17:00"
+      timezone: "America/Santiago"
+    target-branch: "dev"
+    groups:
+      flake-inputs:
+        patterns:
+          - "*"
