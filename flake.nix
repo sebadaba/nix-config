@@ -12,14 +12,9 @@
     # ========= Package Sources =========
     #
     # Default/Main source.
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-
-    # This is a source for critical packages that need to be in a stable branch always.
-    # This way nixpkgs can be set to the unstable branch to get a jump start
-    # on deprecation changes without breaking critical components.
-    nixpkgs-stable.url = "nixpkgs/nixos-26.05";
-    # Just for packages that need to be bleeding-edge always.
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    # Using a direct GitHub URL (instead of the indirect `nixpkgs/nixos-unstable`)
+    # so Dependabot can bump it like the rest of the inputs.
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
