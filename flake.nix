@@ -23,13 +23,6 @@
 
     import-tree.url = "github:vic/import-tree";
 
-    hardware.url = "github:nixos/nixos-hardware";
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -74,7 +67,6 @@
     };
     # Theming
     base16.url = "github:SenchoPens/base16.nix";
-    stylix.url = "github:danth/stylix";
 
     # Private repos
     nix-secrets = {
