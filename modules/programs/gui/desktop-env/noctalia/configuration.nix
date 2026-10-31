@@ -7,6 +7,12 @@
       home-manager.sharedModules = [
         (inputs.self.modules.homeManager.noctalia { usingTailscale = config.services.tailscale.enable; })
       ];
+
+      nix.settings = {
+        extra-substituters = [ "https://noctalia.cachix.org" ];
+        extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+      };
+
       # systemd service. starts after graphical-session target
       #services.noctalia.enable = true;
 
