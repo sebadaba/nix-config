@@ -5,10 +5,12 @@
 {
   flake.modules.nixos.multimedia = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.multimedia ];
+    services.gvfs.enable = true;
   };
 
   flake.modules.homeManager.multimedia = {
     imports = with inputs.self.modules.homeManager; [
+      files
       image
       office
       pdf
