@@ -14,6 +14,8 @@
         ]
         ++ [ inputs.home-manager.nixosModules.home-manager ];
 
+        users.users.khaen.extraGroups = [ "dialout" ]; # For minicom
+
       home-manager.users.khaen = {
         imports = with inputs.self.modules.homeManager; [
           zed
