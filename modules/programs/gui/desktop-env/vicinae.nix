@@ -9,7 +9,7 @@
       inputs.vicinae.homeManagerModules.default
     ];
 
-    services.vicinae = {
+    programs.vicinae = {
       enable = true; # default: false
       systemd = {
         enable = true; # default: false
