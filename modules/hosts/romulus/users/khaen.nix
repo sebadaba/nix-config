@@ -21,7 +21,7 @@
           zed
           zen
           development
-          vesktop
+          communication
           spicetify
           productivity
           network-toolkit
