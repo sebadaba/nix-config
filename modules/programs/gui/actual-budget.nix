@@ -5,7 +5,6 @@
         users.actual = {
           isSystemUser = true;
           group = "actual";
-          extraGroups = [ "tailscale" ];
         };
         groups.actual = { };
       };
@@ -18,88 +17,70 @@
 
         settings = {
           port = 5006;
-          hostname = tailscale-domain;
-          https = {
-            key = "/var/lib/actual/certs/${tailscale-domain}.key";
-            cert = "/var/lib/actual/certs/${tailscale-domain}.crt";
-          };
+          # Loopback only: tailscaled terminates TLS and proxies here.
+          hostname = "127.0.0.1";
+          # Trust tailscaled's proxy so req.protocol is https and req.ip
+          # is the real client address.
+          trustedProxies = [ "127.0.0.1/32" ];
         };
       };
 
-      networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5006 ];
-
-      systemd.services.tailscale-certs-sync = {
-        description = "Sync Tailscale certs to Actual server-files";
+      # systemd creates actual's StateDirectory; hand it back to `actual` so
+      # the service can read/write its data.
+      systemd.services.actual-state-ownership = {
+        description = "Ensure Actual's state directory belongs to the actual user";
+        before = [ "actual.service" ];
+        wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
-          ExecStart = pkgs.writeShellScript "sync-tailscale-certs" ''
-            src_crt=/var/lib/tailscale/certs/${tailscale-domain}.crt
-            src_key=/var/lib/tailscale/certs/${tailscale-domain}.key
-            dst=/var/lib/actual/server-files/certs
-
-            if [ ! -f "$src_crt" ] || [ ! -f "$src_key" ]; then
-              echo "Tailscale certs not yet generated, skipping"
-              exit 0
-            fi
-
-            install -d -m 0750 -o actual -g actual "$dst"
-            install -m 0640 -o actual -g actual "$src_crt" "$dst/"
-            install -m 0640 -o actual -g actual "$src_key" "$dst/"
+          ExecStart = pkgs.writeShellScript "fix-actual-state-ownership" ''
+            ${pkgs.coreutils}/bin/chown -R actual:actual /var/lib/actual
+            ${pkgs.coreutils}/bin/chmod 0700 /var/lib/actual
           '';
         };
+      };
+
+      # tailscaled serves HTTPS for the MagicDNS name and proxies to
+      # 127.0.0.1:5006. It renews the ACME certificate on its own (hourly
+      # refresh loop with ARI) as long as the ServeConfig has an HTTPS entry.
+      systemd.services.tailscale-serve-actual = {
+        description = "Expose Actual through tailscale serve";
         after = [ "tailscaled.service" ];
+        wants = [ "tailscaled.service" ];
         wantedBy = [ "multi-user.target" ];
-      };
-
-      systemd.timers.tailscale-certs-sync = {
-        wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnBootSec = "2min";
-          OnCalendar = "daily";
-          RandomizedDelaySec = "1h";
-        };
-      };
-
-      systemd.services.tailscale-certs-sync-daily = {
-        description = "Refresh Tailscale certs and restart Actual";
+        restartTriggers = [ "${pkgs.tailscale}/bin/tailscale" ];
         serviceConfig = {
           Type = "oneshot";
-          ExecStart = pkgs.writeShellScript "sync-and-restart" ''
-            src_crt=/var/lib/tailscale/certs/nostromo.tail004be.ts.net.crt
-            src_key=/var/lib/tailscale/certs/nostromo.tail004be.ts.net.key
-            dst=/var/lib/actual/server-files/certs
+          RemainAfterExit = true;
+          Restart = "on-failure";
+          RestartSec = "10s";
+          ExecStart = pkgs.writeShellScript "tailscale-serve-actual" ''
+            set -euo pipefail
 
-            if [ ! -f "$src_crt" ] || [ ! -f "$src_key" ]; then
-              exit 0
-            fi
+            # serve needs a logged-in backend.
+            for _ in $(seq 1 60); do
+              if ${pkgs.tailscale}/bin/tailscale status --json 2>/dev/null \
+                   | ${pkgs.jq}/bin/jq -e '.BackendState == "Running"' >/dev/null 2>&1; then
+                break
+              fi
+              sleep 1
+            done
 
-            install -d -m 0750 -o actual -g actual "$dst"
-            install -m 0640 -o actual -g actual "$src_crt" "$dst/"
-            install -m 0640 -o actual -g actual "$src_key" "$dst/"
-
-            systemctl try-restart actual
+            ${pkgs.tailscale}/bin/tailscale serve --bg --https=5006 http://127.0.0.1:5006
           '';
         };
-        after = [ "tailscaled.service" "actual.service" ];
-      };
-
-      # Watchdog: detecta cambios en el cert de Tailscale y dispara el servicio
-      systemd.paths.tailscale-certs-sync = {
-        pathConfig = {
-          PathChanged = "/var/lib/tailscale/certs/${tailscale-domain}.crt";
-          Unit = "tailscale-certs-sync.service";
-        };
-        wantedBy = [ "multi-user.target" ];
       };
 
       systemd.services.actual = {
-        after = [
-          "tailscaled.service"
-          "tailscale-certs-sync.service"
-        ];
-        requires = [ "tailscale-certs-sync.service" ];
-        wants = [ "tailscaled.service" ];
+        serviceConfig = {
+          RestartSec = "5s";
+          # actual-server 26.11 swallows the error and exits 0; not restarting
+          # on a clean exit turns the crash loop into a visible failed unit.
+          RestartPreventExitStatus = [ 0 ];
+        };
+        # Log why actual-server died instead of just "Unhandled rejection".
+        environment.DEBUG = "actual-sensitive:server";
       };
     };
 }
