@@ -8,13 +8,8 @@
     {
       imports =
         with inputs.self.modules.nixos;
-        with inputs.self.factory;
         [
           basic-system
-          (btrfs-subvolumes {
-            primary-disk = "/dev/nvme1n1";
-            swapFileSize = "12G";
-          })
           audio
           plymouth
           desktop-env
@@ -69,11 +64,6 @@
       virtualisation.libvirtd.enable = true;
       programs.virt-manager.enable = true;
 
-      systemd.tmpfiles.rules = [ "d /home/khaen/Games 0755 khaen users - -" ];
-
-      disko.devices.disk.main.content.partitions.root.content.subvolumes."/games" = {
-        mountOptions = [ "compress=zstd" ];
-        mountpoint = "/home/khaen/Games";
       };
     };
 }
